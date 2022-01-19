@@ -1,4 +1,8 @@
 local opt = vim.opt
+local g = vim.g
+local cmd = vim.cmd
+local utils = require 'setup.utils'
+local autocmd = utils.autocmd
 
 
 -- Global
@@ -12,6 +16,8 @@ opt.termguicolors = true
 opt.shortmess:append({ c = true, F = true })
 opt.clipboard:append({ 'unnamedplus' })
 opt.fillchars = 'eob: '
+opt.lazyredraw = true
+opt.hidden = true
 
 
 -- Local to window
@@ -34,3 +40,26 @@ opt.tabstop = 4
 opt.expandtab = true
 opt.smartindent = true
 opt.swapfile = false
+
+
+-- Autocommands
+autocmd('start_screen', [[VimEnter * ++once lua require('start').start()]], true)
+autocmd(
+  'syntax_aucmds',
+  [[Syntax * syn match extTodo "\<\(NOTE\|HACK\|BAD\|TODO\):\?" containedin=.*Comment.* | hi! link extTodo Todo]],
+  true
+)
+autocmd('misc_aucmds', {
+  [[BufWinEnter * checktime]],
+  [[TextYankPost * silent! lua vim.highlight.on_yank()]],
+  [[FileType qf set nobuflisted ]],
+}, true)
+
+-- Commands
+cmd [[command! WhatHighlight :call util#syntax_stack()]]
+cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
+cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
+cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
+cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
+cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]]
+
