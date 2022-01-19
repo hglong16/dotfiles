@@ -15,6 +15,8 @@ local function init()
     use 'tpope/vim-commentary'
     -- dev icons
     use 'kyazdani42/nvim-web-devicons' 
+    -- blank line
+    use 'lukas-reineke/indent-blankline.nvim'
     -- treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -22,6 +24,21 @@ local function init()
     }
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use 'windwp/nvim-ts-autotag'
+    -- telescope
+    use {
+          'nvim-telescope/telescope.nvim',
+           requires = { {'nvim-lua/plenary.nvim'} }
+        }  
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use {
+      "nvim-telescope/telescope-frecency.nvim",
+      config = function()
+        require"telescope".load_extension("frecency")
+      end,
+      requires = {"tami5/sqlite.lua"}
+    }
+    use { "nvim-telescope/telescope-file-browser.nvim" }
+
 
 
 

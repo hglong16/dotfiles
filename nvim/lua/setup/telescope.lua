@@ -1,25 +1,35 @@
-local telescope = require('telescope')
-
-telescope.setup({
-    defaults = {
-        prompt_prefix = '  ',
-
-        layout_config = {
-            horizontal = { mirror = false, preview_width = 0.5 },
-            vertical = { mirror = false },
-        },
-
-        file_ignore_patterns = { 'node_modules/' },
-        set_env = { COLORTERM = 'truecolor' },
+local telescope = require 'telescope'
+telescope.setup {
+  defaults = {
+    layout_strategy = 'flex',
+    scroll_strategy = 'cycle',
+  },
+  extensions = {
+    frecency = { workspaces = { 
+        ["conf"]    ="/User/hglong/.config",
+        ["proj"]    ="/User/hglong/Projects",
+        ["desktop"] ="/User/hglong/Desktop"
     },
-
-    -- Remove ./ from fd results
-    -- Credits https://github.com/nvim-telescope/telescope.nvim/pull/1532
-    pickers = {
-        find_files = {
-            find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
-        },
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = 'smart_case',
     },
-})
+  },
+  pickers = {
+    lsp_references = { theme = 'dropdown' },
+    lsp_code_actions = { theme = 'dropdown' },
+    lsp_definitions = { theme = 'dropdown' },
+    lsp_implementations = { theme = 'dropdown' },
+    buffers = {
+      sort_lastused = true,
+      previewer = false,
+    },
+  },
+}
 
-telescope.load_extension('fzf')
+-- Extensions
+telescope.load_extension 'frecency'
+telescope.load_extension 'fzf'
+telescope.load_extension 'file_browser'
