@@ -2,6 +2,7 @@ vim.api.nvim_set_keymap('i', 'jk', '<Esc>', {noremap = true })
 
 
 require('options')
+require('plugins')
 
 -- require('setup.autosession')
 -- require('setup.bufferline')
@@ -11,7 +12,7 @@ require('options')
 -- require('setup.cmp')
 -- require('setup.autopairs')
 -- require('setup.toggleterm')
--- require('setup.treesitter')
+require('setup.treesitter')
 -- require('setup.telescope')
 -- require('setup.blankline')
 -- require('setup.signature')
@@ -30,7 +31,7 @@ require('options')
 --
 --
 --
-require('mappings')
+-- require('mappings')
 -- require('highlights')
 -- require('setup.dap')
 -- require('autocommands')

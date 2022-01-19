@@ -8,11 +8,21 @@ local function init()
     local use = packer.use
     packer.reset()
 
-    -- Packer
+    -- Packer and basic
     use 'wbthomason/packer.nvim'
-
     use 'lewis6991/impatient.nvim'
     use 'nathom/filetype.nvim'
+    use 'tpope/vim-commentary'
+    -- dev icons
+    use 'kyazdani42/nvim-web-devicons' 
+    -- treesitter
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+    }
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
+    use 'windwp/nvim-ts-autotag'
+
 
 
 end
