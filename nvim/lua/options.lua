@@ -3,6 +3,7 @@ local g = vim.g
 local cmd = vim.cmd
 local utils = require 'setup.utils'
 local autocmd = utils.autocmd
+local map = utils.map
 
 
 -- Global
@@ -28,15 +29,13 @@ vim.cmd([[hi clear CursorLine]])
 vim.cmd([[hi CursorLine gui=underline cterm=underline]])
 opt.list = true
 opt.listchars = 'tab:\\ ,trail:-,eol:↵'
-opt.foldmethod = 'expr'
-opt.foldexpr = 'nvim_treesitter#foldexpr()'
 -- Hack indent-blankline https://github.com/lukas-reineke/indent-blankline.nvim/issues/59#issuecomment-806398054
 opt.colorcolumn = '99999'
 
 
 -- Local to bufffer
-opt.shiftwidth = 4
-opt.tabstop = 4
+opt.shiftwidth = 2
+opt.tabstop = 2
 opt.expandtab = true
 opt.smartindent = true
 opt.swapfile = false
@@ -62,4 +61,21 @@ cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update(
 cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
 cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
 cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]]
+
+local disabled_built_ins = {
+  'gzip',
+  'man',
+  'matchit',
+  'matchaparen',
+  'shada_plugin',
+  'tarPlugin',
+  'tar',
+  'zipPlugin',
+  'zip',
+  'netrwPlugin',
+}
+
+for i = 1, 10 do
+  g['loaded_' .. disabled_built_ins[i]] = 1
+end
 

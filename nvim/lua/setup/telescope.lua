@@ -28,6 +28,7 @@ telescope.setup {
     },
   },
 }
+}
 
 -- Extensions
 telescope.load_extension 'frecency'

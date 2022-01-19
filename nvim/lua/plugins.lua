@@ -13,6 +13,8 @@ local function init()
     use 'lewis6991/impatient.nvim'
     use 'nathom/filetype.nvim'
     use 'tpope/vim-commentary'
+    use 'tpope/vim-surround'
+    use {'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
     -- dev icons
     use 'kyazdani42/nvim-web-devicons' 
     -- blank line
@@ -24,6 +26,9 @@ local function init()
     }
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use 'windwp/nvim-ts-autotag'
+    use 'p00f/nvim-ts-rainbow' -- rainbow bracket
+    use 'nvim-treesitter/nvim-treesitter-refactor'
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
     -- telescope
     use {
           'nvim-telescope/telescope.nvim',

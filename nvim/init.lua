@@ -1,6 +1,5 @@
-vim.api.nvim_set_keymap('i', 'jk', '<Esc>', {noremap = true })
 
-
+require 'impatient'
 require('options')
 require('plugins')
 
@@ -14,6 +13,7 @@ require('plugins')
 -- require('setup.toggleterm')
 require('setup.treesitter')
 require('setup.telescope')
+require('setup.telescope_setup')
 require('setup.blankline')
 -- require('setup.signature')
 -- require('setup.luasnip/loaders/from_vscode').lazy_load()
@@ -31,7 +31,6 @@ require('setup.blankline')
 --
 --
 --
--- require('mappings')
 -- require('highlights')
 -- require('setup.dap')
 -- require('autocommands')
