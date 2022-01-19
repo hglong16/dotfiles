@@ -15,6 +15,8 @@ local function init()
     use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
     use {'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
+    -- Startup time
+    use { 'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 10]] }
     -- dev icons
     use 'kyazdani42/nvim-web-devicons' 
     -- blank line
@@ -28,13 +30,13 @@ local function init()
     use 'windwp/nvim-ts-autotag'
     use 'p00f/nvim-ts-rainbow' -- rainbow bracket
     use 'nvim-treesitter/nvim-treesitter-refactor'
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
     -- telescope
     use {
           'nvim-telescope/telescope.nvim',
            requires = { {'nvim-lua/plenary.nvim'} }
         }  
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use 'ggandor/lightspeed.nvim'
     use {
       "nvim-telescope/telescope-frecency.nvim",
       config = function()
@@ -43,8 +45,23 @@ local function init()
       requires = {"tami5/sqlite.lua"}
     }
     use { "nvim-telescope/telescope-file-browser.nvim" }
-
-
+    use 'nvim-telescope/telescope-project.nvim'
+    use 'nvim-telescope/telescope-arecibo.nvim'
+    -- Search
+    use 'romainl/vim-cool'
+    -- Color
+    use 'norcalli/nvim-colorizer.lua'
+    -- bufffer line
+    -- using packer.nvim
+    use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+    -- Completion and linting
+    use {
+      'neovim/nvim-lspconfig',
+      'nvim-lua/lsp-status.nvim',
+      'folke/trouble.nvim',
+      'ray-x/lsp_signature.nvim',
+      'kosayoda/nvim-lightbulb'
+    }
 
 
 end

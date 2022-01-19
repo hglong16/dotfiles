@@ -7,7 +7,8 @@ ts_cf.setup {
     autotag = { enable = true, },
     autopairs = {enable = true},
     context_commentstring = { enable = true},
-    rainbow = {
+    indent = {enable = false},
+   rainbow = {
         enable = true,
         extended_mode = false,
     },
@@ -16,8 +17,5 @@ ts_cf.setup {
         highlight_definitions = { enable = true },
         
 
-    },
-    textsubjects = {
-        enables = true,
     },
 }

@@ -2,6 +2,7 @@
 require 'impatient'
 require('options')
 require('plugins')
+require('statusline')
 
 -- require('setup.autosession')
 -- require('setup.bufferline')
@@ -15,6 +16,7 @@ require('setup.treesitter')
 require('setup.telescope')
 require('setup.telescope_setup')
 require('setup.blankline')
+require('setup.buffer')
 -- require('setup.signature')
 -- require('setup.luasnip/loaders/from_vscode').lazy_load()
 -- require('setup.lspconfig')
@@ -22,6 +24,7 @@ require('setup.blankline')
 -- require('setip.goto')
 -- require('setup.aeirla')
 -- require('setup.rest')
+--
 --
 --
 -- require('lspicon')
@@ -33,4 +36,4 @@ require('setup.blankline')
 --
 -- require('highlights')
 -- require('setup.dap')
--- require('autocommands')
+--require('autocommands')

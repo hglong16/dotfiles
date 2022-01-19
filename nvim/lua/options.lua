@@ -1,46 +1,57 @@
-local opt = vim.opt
 local g = vim.g
 local cmd = vim.cmd
-local utils = require 'setup.utils'
+local o, wo, bo = vim.o, vim.wo, vim.bo
+utils = require 'setup.utils'
+local opt = utils.opt
 local autocmd = utils.autocmd
-local map = utils.map
+map = utils.map
+
+g.mapleader = " " 
+--
+local buffer = {o , bo}
+local window = {o, wo}
+--
+opt('textwidth', 100, buffer)
+opt('scrolloff', 9)
+opt('wildignore', '*.o,*~, *.pyc')
+opt('wildmode', 'longest,full')
+opt('whichwrap', vim.o.whichwrap .. '<,>,h,l')
+opt('inccommand', 'nosplit')
+opt('lazyredraw', true)
+opt('showmatch', true)
+opt('ignorecase',true)
+opt('smartcase',true)
+opt('tabstop', 2, buffer)
+opt('softtabstop', 0, buffer)
+opt('expandtab', true, buffer)
+opt('shiftwidth', 2, buffer)
+opt('number', true, window)
+opt('relativenumber', true, window)
+opt('smartindent', true, buffer)
+opt('laststatus',2)
+opt('showmode', false)
+opt('shada', [['20,<50,s10,h,/100]])
+opt('hidden', true)
+opt('shortmess', o.shortmess .. 'c')
+opt('joinspaces', false)
+opt('guicursor', [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50]])
+opt('updatetime', 500)
+opt('conceallevel', 2, window)
+opt('concealcursor', 'nc', window)
+opt('previewheight', 5)
+opt('undofile', true, buffer)
+opt('synmaxcol', 500, buffer)
+opt('display', 'msgsep')
+opt('cursorline', true, window)
+cmd [[hi clear CursorLine]]
+cmd [[hi Cursorline gui=underline cterm=underline ]]
+opt('modeline', false, buffer)
+opt('mouse', 'nivh')
 
 
--- Global
-opt.smartcase = true
-opt.updatetime = 300
-opt.splitright = true
-opt.showmatch = true
-opt.showtabline = 2
-opt.scrolloff = 7
-opt.termguicolors = true
-opt.shortmess:append({ c = true, F = true })
-opt.clipboard:append({ 'unnamedplus' })
-opt.fillchars = 'eob: '
-opt.lazyredraw = true
-opt.hidden = true
-
-
--- Local to window
-opt.number = true
-opt.relativenumber = true
-opt.cursorline = true
-vim.cmd([[hi clear CursorLine]])
-vim.cmd([[hi CursorLine gui=underline cterm=underline]])
-opt.list = true
-opt.listchars = 'tab:\\ ,trail:-,eol:↵'
--- Hack indent-blankline https://github.com/lukas-reineke/indent-blankline.nvim/issues/59#issuecomment-806398054
-opt.colorcolumn = '99999'
-
-
--- Local to bufffer
-opt.shiftwidth = 2
-opt.tabstop = 2
-opt.expandtab = true
-opt.smartindent = true
-opt.swapfile = false
-
-
+opt('termguicolors', true)
+opt('background', 'dark')
+--
 -- Autocommands
 autocmd('start_screen', [[VimEnter * ++once lua require('start').start()]], true)
 autocmd(
@@ -78,4 +89,15 @@ local disabled_built_ins = {
 for i = 1, 10 do
   g['loaded_' .. disabled_built_ins[i]] = 1
 end
+
+map('i', 'jk', '<Esc>', { noremap = true } )
+map('t', 'jj', [[<C-\><C-n>]])
+
+-- Save buffer
+map('n', '<leader>w', '<cmd>w<cr>', { silent = true })
+
+
+-- Tab movement
+map('n', '<c-Left>', '<cmd>tabpre<cr>')
+map('n', '<c-Right>', '<cmd>tabnext<cr>')
 

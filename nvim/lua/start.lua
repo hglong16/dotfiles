@@ -85,8 +85,12 @@ end
 local commands = {
   { key = 'u', disp = 'Update plugins', cmd = 'PackerUpdate' },
   { key = 'c', disp = 'Clean plugins', cmd = 'PackerClean' },
-  { key = 't', disp = 'Time startup', cmd = 'StartupTime' },
-  { key = 's', disp = 'Start Prosession', cmd = 'Prosession .' },
+  { key = 's', disp = 'Project', cmd = 'Telescope project' },
+  { key = 'y', disp = 'Startup Time', cmd = 'StartupTime' },
+  { key = 'a', disp = 'Browser', cmd = 'Telescope file_browser' },
+  { key = 'g', disp = 'Git Commit', cmd = 'Telescope git_commit' },
+  { key = 'f', disp = 'Find File', cmd = 'Telescope live_grep' },
+  { key = 't', disp = 'Telescope', cmd = 'Telescope' },
   { key = 'q', disp = 'Quit', cmd = 'q!' },
 }
 
@@ -192,6 +196,7 @@ local function setup_keys()
   map(0, 'n', 'j', '<cmd>lua require"start".handle_j()<cr>', { noremap = true, silent = true })
   map(0, 'n', 'k', '<cmd>lua require"start".handle_k()<cr>', { noremap = true, silent = true })
   map(0, 'n', '<cr>', '<cmd>lua require"start".handle_cr()<cr>', { noremap = true, silent = true })
+  
 
   -- Then, the defined keybindings
   for _, binding in ipairs(keybindings) do

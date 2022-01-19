@@ -26,6 +26,12 @@ telescope.setup {
       sort_lastused = true,
       previewer = false,
     },
+    find_files = {
+      find_command = {'fd', '--type', 'f', '--strip-cwd-prefix'}
+    },
+    file_browser = {
+      layout_strategy = 'cursor',
+    }
   },
 }
 }
@@ -34,3 +40,4 @@ telescope.setup {
 telescope.load_extension 'frecency'
 telescope.load_extension 'fzf'
 telescope.load_extension 'file_browser'
+telescope.load_extension 'project'
