@@ -37,6 +37,7 @@ local diagnostics_signs = {
 
 bufferline.setup {
   options = {
+    offsets = {{filetype = "SidebarNvim", text = "File Explorer"  , text_align = "left"}},
     always_show_bufferline = false,
     diagnostics = 'nvim_lsp',
     diagnostics_indicator = function(count, level, diagnostics_dict, context)

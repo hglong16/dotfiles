@@ -1,3 +1,3 @@
-for i in range(2):
+for i in range():
     if i == 2:
         print  (i)
