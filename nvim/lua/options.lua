@@ -97,8 +97,11 @@ map('t', 'jj', [[<C-\><C-n>]])
 -- Save buffer
 map('n', '<leader>w', '<cmd>w<cr>', { silent = true })
 
+-- Vsc
+map('n', 'gs', '<cmd>Neogit<cr>', silent)
+
 
 -- Tab movement
-map('n', '<c-Left>', '<cmd>tabpre<cr>')
-map('n', '<c-Right>', '<cmd>tabnext<cr>')
+map('n', '[[', '<cmd>BufferLineCyclePrev<cr>')
+map('n', ']]', '<cmd>BufferLineCycle<cr>')
 

@@ -2,11 +2,11 @@
 require 'impatient'
 require('options')
 require('plugins')
+require'statusline'
 
 -- require('setup.autosession')
 -- require('setup.bufferline')
 -- require('setup.colorizer')
--- -- require('setup.dashboard')
 -- require('setup.gitsigns')
 -- require('setup.cmp')
 -- require('setup.autopairs')
@@ -35,6 +35,3 @@ require('setup.neogit')
 --
 --
 --
--- require('highlights')
--- require('setup.dap')
---require('autocommands')
