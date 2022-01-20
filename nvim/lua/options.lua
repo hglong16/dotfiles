@@ -47,6 +47,7 @@ cmd [[hi clear CursorLine]]
 cmd [[hi Cursorline gui=underline cterm=underline ]]
 opt('modeline', false, buffer)
 opt('mouse', 'nivh')
+opt('signcolumn', 'yes:1', window)
 
 
 opt('termguicolors', true)

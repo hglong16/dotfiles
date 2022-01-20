@@ -52,8 +52,10 @@ local function init()
     -- Color
     use 'norcalli/nvim-colorizer.lua'
     -- bufffer line
-    -- using packer.nvim
     use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+    use {'nvim-lualine/lualine.nvim',
+      require = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
     -- Completion and linting
     use {
       'neovim/nvim-lspconfig',
@@ -62,6 +64,10 @@ local function init()
       'ray-x/lsp_signature.nvim',
       'kosayoda/nvim-lightbulb'
     }
+    -- GIt
+    use 'lewis6991/gitsigns.nvim'
+    use {'tpope/vim-fugitive', cmd = {'Git','Gstatus','Gblame','Gpush','Gpull'}, disable = true}
+    use 'TimUntersberger/neogit'
 
 
 end

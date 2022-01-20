@@ -2,7 +2,6 @@
 require 'impatient'
 require('options')
 require('plugins')
-require('statusline')
 
 -- require('setup.autosession')
 -- require('setup.bufferline')
@@ -17,6 +16,8 @@ require('setup.telescope')
 require('setup.telescope_setup')
 require('setup.blankline')
 require('setup.buffer')
+require('setup.gitsigns')
+require('setup.neogit')
 -- require('setup.signature')
 -- require('setup.luasnip/loaders/from_vscode').lazy_load()
 -- require('setup.lspconfig')
