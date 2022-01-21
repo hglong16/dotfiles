@@ -15,8 +15,11 @@ local function init()
 	use("tpope/vim-commentary")
 	use("tpope/vim-surround")
 	use({ "tpope/vim-dispatch", cmd = { "Dispatch", "Make", "Focus", "Start" } })
+  use "projekt0n/github-nvim-theme"
 	-- Startup time
 	use({ "dstein64/vim-startuptime", cmd = "StartupTime", config = [[vim.g.startuptime_tries = 10]] })
+  -- Mark
+  use 'kshenoy/vim-signature'
 	-- dev icons
 	use("kyazdani42/nvim-web-devicons")
 	-- blank line
@@ -24,6 +27,8 @@ local function init()
 	-- motion
 	use("chaoren/vim-wordmotion")
 	use("justinmk/vim-sneak")
+  -- sidebar
+  use 'sidebar-nvim/sidebar.nvim'
 	-- treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -33,6 +38,8 @@ local function init()
 	use("windwp/nvim-ts-autotag")
 	use("p00f/nvim-ts-rainbow") -- rainbow bracket
 	use("nvim-treesitter/nvim-treesitter-refactor")
+  -- Pretti
+  use 'junegunn/vim-easy-align'
 	-- telescope
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -72,23 +79,25 @@ local function init()
 		"hrsh7th/nvim-cmp",
 		requires = {
 			"L3MON4D3/LuaSnip",
-			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+               { "hrsh7th/cmp-buffer",                   after = "nvim-cmp" },
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
-			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
-			{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+               { "hrsh7th/cmp-path",                     after = "nvim-cmp" },
+               { "hrsh7th/cmp-nvim-lua",                 after = "nvim-cmp" },
+               { "saadparwaiz1/cmp_luasnip",             after = "nvim-cmp" },
 			"lukas-reineke/cmp-under-comparator",
-			{ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
+               { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
 		},
 		config = [[require('setup.cmp')]],
 		event = "InsertEnter *",
 	})
-
+  use 'windwp/nvim-autopairs'
 	-- GIt
 	use("lewis6991/gitsigns.nvim")
 	use({ "tpope/vim-fugitive", cmd = { "Git", "Gstatus", "Gblame", "Gpush", "Gpull" }, disable = true })
 	use("TimUntersberger/neogit")
+  -- Lua
+  -- Lua
 end
 
 local plugins = setmetatable({}, {

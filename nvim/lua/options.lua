@@ -43,8 +43,6 @@ opt('undofile', true, buffer)
 opt('synmaxcol', 500, buffer)
 opt('display', 'msgsep')
 opt('cursorline', true, window)
-cmd [[hi clear CursorLine]]
-cmd [[hi Cursorline gui=underline cterm=underline ]]
 opt('modeline', false, buffer)
 opt('mouse', 'nivh')
 opt('signcolumn', 'yes:1', window)
@@ -52,6 +50,7 @@ opt('signcolumn', 'yes:1', window)
 
 opt('termguicolors', true)
 opt('background', 'dark')
+cmd [[colorscheme github_dark_default]]
 --
 -- Autocommands
 autocmd('start_screen', [[VimEnter * ++once lua require('start').start()]], true)
@@ -103,5 +102,4 @@ map('n', 'gs', '<cmd>Neogit<cr>', silent)
 
 -- Tab movement
 map('n', '[[', '<cmd>BufferLineCyclePrev<cr>')
-map('n', ']]', '<cmd>BufferLineCycle<cr>')
-
+map('n', ']]', '<cmd>BufferLineCycleNext<cr>')
