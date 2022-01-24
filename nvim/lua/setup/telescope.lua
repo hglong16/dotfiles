@@ -3,6 +3,7 @@ telescope.setup {
   defaults = {
     layout_strategy = 'flex',
     scroll_strategy = 'cycle',
+    file_ignore_patterns = {'node_module'}
   },
   extensions = {
     frecency = { workspaces = { 

@@ -51,7 +51,7 @@ opt('signcolumn', 'yes:1', window)
 opt('termguicolors', true)
 opt('background', 'dark')
 cmd [[colorscheme github_dark_default]]
---
+-- TODO
 -- Autocommands
 autocmd('start_screen', [[VimEnter * ++once lua require('start').start()]], true)
 autocmd(
@@ -72,7 +72,7 @@ cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update(
 cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
 cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
 cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]]
-
+cmd [[hi StatuslineLint guibg=red]]
 local disabled_built_ins = {
   'gzip',
   'man',
@@ -101,5 +101,3 @@ map('n', 'gs', '<cmd>Neogit<cr>', silent)
 
 
 -- Tab movement
-map('n', '[[', '<cmd>BufferLineCyclePrev<cr>')
-map('n', ']]', '<cmd>BufferLineCycleNext<cr>')

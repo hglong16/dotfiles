@@ -2,8 +2,6 @@
 require 'impatient'
 require('options')
 require('plugins')
-require'statusline'
-
 -- require('setup.autosession')
 -- require('setup.bufferline')
 -- require('setup.colorizer')

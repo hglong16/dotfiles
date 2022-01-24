@@ -23,7 +23,7 @@ local colors = {
   error_selected = { guifg = error_fg, guibg = selected_bg, gui = '' },
   warning = { guifg = warning_fg, guibg = elem_bg, guisp = warning_fg },
   warning_selected = { guifg = warning_fg, guibg = selected_bg, gui = '' },
-  info = { guifg = info_fg, guib = elem_bg, guisp = info_fg },
+  info = { guifg = info_fg, guibg = elem_bg, guisp = info_fg },
   info_selected = { guifg = info_fg, guibg = selected_bg, gui = '' },
   pick = { guifg = pick_fg, guibg = elem_bg },
   pick_selected = { guifg = pick_fg, guibg = selected_bg },
@@ -37,8 +37,9 @@ local diagnostics_signs = {
 
 bufferline.setup {
   options = {
+    numbers = "ordinal",
     offsets = {{filetype = "SidebarNvim", text = "File Explorer"  , text_align = "left"}},
-    always_show_bufferline = false,
+    always_show_bufferline = true,
     diagnostics = 'nvim_lsp',
     diagnostics_indicator = function(count, level, diagnostics_dict, context)
       local s = ' '
@@ -102,3 +103,24 @@ bufferline.setup {
 
 local opts = { silent = true, nowait = true }
 map('n', 'gb', '<cmd>BufferLinePick<cr>', opts)
+map('n', ']]', '<cmd>BufferLineCycleNext<cr>', opts)
+map('n', '[[', '<cmd>BufferLineCyclePrev<cr>', opts)
+map('n', '[1','<cmd>BufferLineGoToBuffer 1<cr>',opts)
+map('n', '[2','<cmd>BufferLineGoToBuffer 2<cr>',opts)
+map('n', '[3','<cmd>BufferLineGoToBuffer 3<cr>',opts)
+map('n', '[4','<cmd>BufferLineGoToBuffer 4<cr>',opts)
+map('n', '[5','<cmd>BufferLineGoToBuffer 5<cr>',opts)
+map('n', '[6','<cmd>BufferLineGoToBuffer 6<cr>',opts)
+map('n', '[7','<cmd>BufferLineGoToBuffer 7<cr>',opts)
+map('n', '[8','<cmd>BufferLineGoToBuffer 8<cr>',opts)
+map('n', '[9','<cmd>BufferLineGoToBuffer 9<cr>',opts)
+
+map('n', ']1','<cmd>BufferLineGoToBuffer 1<cr>',opts)
+map('n', ']2','<cmd>BufferLineGoToBuffer 2<cr>',opts)
+map('n', ']3','<cmd>BufferLineGoToBuffer 3<cr>',opts)
+map('n', ']4','<cmd>BufferLineGoToBuffer 4<cr>',opts)
+map('n', ']5','<cmd>BufferLineGoToBuffer 5<cr>',opts)
+map('n', ']6','<cmd>BufferLineGoToBuffer 6<cr>',opts)
+map('n', ']7','<cmd>BufferLineGoToBuffer 7<cr>',opts)
+map('n', ']8','<cmd>BufferLineGoToBuffer 8<cr>',opts)
+map('n', ']9','<cmd>BufferLineGoToBuffer 9<cr>',opts)

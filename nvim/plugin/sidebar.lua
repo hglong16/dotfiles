@@ -11,16 +11,15 @@ sidebar.setup({
     update_interval = 1000,
     sections = {
     "files",
-    "git",
-    "diagnostics",
     "todos",
+    "diagnostics",
     "symbols"                                                            },
     section_separator = "-----",
     containers = {
         attach_shell = "/bin/sh", show_all = true, interval = 5000,
                                                                          },
     datetime = { format = "%a %b %d, %H:%M", clocks = { { name = "local" }} },
-    todos =         { icon = "",
+    ["todos"] =         { icon = "",
     ignored_paths = { "~"                                                }, },
     disable_closing_prompt = false
 })

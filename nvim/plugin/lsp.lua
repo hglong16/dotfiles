@@ -79,7 +79,6 @@ local function on_attach(client)
   buf_keymap(0, 'n', 'gi', '<cmd>lua require"telescope.builtin".lsp_implementations()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gS', '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gTD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', keymap_opts)
-  buf_keymap(0, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gA', '<cmd>lua require"telescope.builtin".lsp_code_actions()<CR>', keymap_opts)
   buf_keymap(0, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next { float = true }<cr>', keymap_opts)
@@ -160,7 +159,18 @@ local servers = {
     init_options = {
       hostInfo = "neovim"
     },
-    root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git")},
+    root_dir = lspconfig.util.root_pattern("package.json")
+  },
+  eslint = {
+    root_dir = lspconfig.util.root_pattern(".eslintrc", ".eslintrc.js"),
+    on_attach = function(client, bufnr)
+      client.resolved_capabilities.document_formatting = true,
+      on_attach(client, bufnr)
+    end,
+    settings = {
+      format = {enable = true}
+    },
+  },
   vimls = {},
 }
 
@@ -193,12 +203,16 @@ end
 -- null-ls setup
 local null_fmt = null_ls.builtins.formatting
 local null_diag = null_ls.builtins.diagnostics
+local null = null_ls.builtins
 null_ls.setup {
   sources = {
     -- null_diag.chktex,
     -- null_diag.cppcheck,
     -- null_diag.proselint,
+    null.code_actions.gitsigns,
+    null.hover.dictionary,
     null_diag.pylint,
+    null_diag.tsc,
     -- null_diag.selene,
     null_diag.shellcheck,
     -- null_diag.teal,

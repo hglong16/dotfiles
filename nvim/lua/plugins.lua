@@ -12,35 +12,38 @@ local function init()
 	use("wbthomason/packer.nvim")
 	use("lewis6991/impatient.nvim")
 	use("nathom/filetype.nvim")
-	use("tpope/vim-commentary")
 	use("tpope/vim-surround")
-	use({ "tpope/vim-dispatch", cmd = { "Dispatch", "Make", "Focus", "Start" } })
+  use("tpope/vim-repeat")
+  use 'tpope/vim-commentary'
   use "projekt0n/github-nvim-theme"
+  use 'nvim-lualine/lualine.nvim'
 	-- Startup time
 	use({ "dstein64/vim-startuptime", cmd = "StartupTime", config = [[vim.g.startuptime_tries = 10]] })
-  -- Mark
-  use 'kshenoy/vim-signature'
 	-- dev icons
 	use("kyazdani42/nvim-web-devicons")
 	-- blank line
 	use("lukas-reineke/indent-blankline.nvim")
 	-- motion
+  use 'wellle/targets.vim'
 	use("chaoren/vim-wordmotion")
-	use("justinmk/vim-sneak")
+  use 'ggandor/lightspeed.nvim'
   -- sidebar
-  use 'sidebar-nvim/sidebar.nvim'
 	-- treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	})
 	use("JoosepAlviste/nvim-ts-context-commentstring")
+  use({
+    'RRethy/nvim-treesitter-textsubjects',
+    ft = {"lua","typescript"}
+  })
 	use("windwp/nvim-ts-autotag")
 	use("p00f/nvim-ts-rainbow") -- rainbow bracket
 	use("nvim-treesitter/nvim-treesitter-refactor")
   -- Pretti
   use 'junegunn/vim-easy-align'
-	-- telescope
+	-- telescope https://spiderum.com
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/plenary.nvim" } },
@@ -48,14 +51,10 @@ local function init()
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use({
 		"nvim-telescope/telescope-frecency.nvim",
-		config = function()
-			require("telescope").load_extension("frecency")
-		end,
 		requires = { "tami5/sqlite.lua" },
 	})
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
 	use("nvim-telescope/telescope-project.nvim")
-	use("nvim-telescope/telescope-arecibo.nvim")
 	-- Search
 	use("romainl/vim-cool")
 	-- Color
@@ -73,8 +72,9 @@ local function init()
 		"kosayoda/nvim-lightbulb",
 	})
 	use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" } })
-
+  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
 	-- completion
+  --
 	use({
 		"hrsh7th/nvim-cmp",
 		requires = {
@@ -91,10 +91,12 @@ local function init()
 		config = [[require('setup.cmp')]],
 		event = "InsertEnter *",
 	})
-  use 'windwp/nvim-autopairs'
+  -- Quickfix
+  --
+  use 'rafamadriz/friendly-snippets'
+  use { 'windwp/nvim-autopairs' ,wants = 'nvim-cmp'}
 	-- GIt
 	use("lewis6991/gitsigns.nvim")
-	use({ "tpope/vim-fugitive", cmd = { "Git", "Gstatus", "Gblame", "Gpush", "Gpull" }, disable = true })
 	use("TimUntersberger/neogit")
   -- Lua
   -- Lua
