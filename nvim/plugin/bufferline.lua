@@ -67,3 +67,22 @@ vim.g.bufferline = {
   -- where X is the buffer number. But only a static string is accepted here.
   no_name_title = nil,
 }
+  -- Move to previous/next
+map('n', 'qj', ':BufferPrevious<CR>', opts)
+map('n', 'qk', ':BufferNext<CR>', opts)
+-- Re-ordeprevious/next
+map('n', 'qh', ':BufferMovePrevious<CR>', opts)
+map('n', 'ql', ' :BufferMoveNext<CR>', opts)
+-- Goto buin position...
+map('n', 'qq', ':BufferLast<CR>', opts)
+-- Close b
+map('n', 'q9', ':BufferClose<CR>', opts)
+-- Wipeouter
+--            :BufferWipeout<CR>
+-- Close cds
+--            :BufferCloseAllButCurrent<CR>
+--            :BufferCloseBuffersLeft<CR>
+--            :BufferCloseBuffersRight<CR>
+-- Magic b-picking mode
+map('n', 'qn', ':BufferPick<CR>', opts)
+
