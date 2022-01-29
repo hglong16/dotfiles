@@ -111,6 +111,8 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 for _, server in ipairs({
     "bashls",
     -- "denols",
+    "clangd",
+    "cmake",
     "eslint",
     "html",
     "emmet-ls",

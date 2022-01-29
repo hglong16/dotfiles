@@ -23,6 +23,15 @@ require('packer').startup(function()
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   use 'knubie/vim-kitty-navigator'
+  -- unstable
+
+  use 'CRAG666/code_runner.nvim'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    }
+}
 
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
@@ -112,6 +121,7 @@ vim.o.tabstop = 2
 vim.o.softtabstop = 0 
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
+vim.o.clipboard = "unnamed"
 
 --Set colorscheme
 vim.o.termguicolors = true
@@ -133,9 +143,11 @@ require('lualine').setup {
 --Enable Comment.nvim
 require('Comment').setup()
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('t', 'jj', [[]<c-\><c-n>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', 'jj', [[<c-\><c-n>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>w', '<cmd>w<cr>', { silent = true })
-
+-- Nvim tree
+require'nvim-tree'.setup()
+vim.api.nvim_set_keymap('n','<C-n>', ':NvimTreeToggle<cr>',{ silent = true })
 --Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
@@ -175,6 +187,17 @@ require('gitsigns').setup {
   keymaps = {},
 }
 
+  -- code runner
+require('code_runner').setup({
+  filetype = {
+    java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
+    python = "python -U",
+    typescript = "deno run",
+    rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt",
+    cpp = "g++ -o $fileNameWithoutExt $fileName && ./$fileNameWithoutExt"
+  },
+})
+vim.api.nvim_set_keymap('n', '<leader>7', ':w<cr> :RunCode<CR>', { noremap = true, silent = false })
 
 -- Telescope
 require('telescope').setup {
