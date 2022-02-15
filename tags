@@ -31,7 +31,7 @@ condition	nvim/lua/lsp/null-ls.lua	/^        condition = function(utils)$/;"	f
 config	nvim/init.lua	/^local config = function(name)$/;"	f
 disable	nvim/lua/plugins/autopairs.lua	/^local disable = function()$/;"	f
 enable	nvim/lua/plugins/autopairs.lua	/^local enable = function()$/;"	f
-enabled_layouts tall	kitty/kitty.conf	/^enabled_layouts tall:bias=50;full_size=1;mirrored=false$/;"	k
+enabled_layouts fat	kitty/kitty.conf	/^enabled_layouts fat:bias=50;full_size=1;mirrored=false$/;"	k
 encode_key_mapping	kitty/pass_keys.py	/^def encode_key_mapping(key_mapping):$/;"	f
 error_msg	nvim/plugin/packer_compiled.lua	/^local no_errors, error_msg = pcall(function()$/;"	f
 expand	nvim/lua/plugins/cmp.lua	/^        expand = function(args)$/;"	f
@@ -59,12 +59,16 @@ reset_autopairs	nvim/lua/plugins/autopairs.lua	/^global.reset_autopairs = functi
 s:setup_colors	nvim/plugin/colors.vim	/^function! s:setup_colors() abort$/;"	f
 save_profiles	nvim/plugin/packer_compiled.lua	/^local function save_profiles(threshold)$/;"	f
 setup	nvim/lua/lsp/bashls.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
+setup	nvim/lua/lsp/clangd.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
+setup	nvim/lua/lsp/cmake.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
 setup	nvim/lua/lsp/denols.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
 setup	nvim/lua/lsp/emmet-ls.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
 setup	nvim/lua/lsp/eslint.lua	/^    setup = function(on_attach, capabilities)$/;"	f
 setup	nvim/lua/lsp/html.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
 setup	nvim/lua/lsp/jsonls.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
 setup	nvim/lua/lsp/null-ls.lua	/^M.setup = function(on_attach)$/;"	f	unknown:M
+setup	nvim/lua/lsp/pyright.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
+setup	nvim/lua/lsp/rls.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
 setup	nvim/lua/lsp/sumneko_lua.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
 setup	nvim/lua/lsp/tsserver.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
 t	nvim/lua/utils.lua	/^M.t = function(str)$/;"	f	unknown:M

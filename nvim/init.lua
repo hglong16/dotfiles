@@ -25,6 +25,8 @@ require('packer').startup(function()
   use 'knubie/vim-kitty-navigator'
   use "folke/todo-comments.nvim"
   use "nvim-orgmode/orgmode"
+  -- indent for python
+  use "Vimjas/vim-python-pep8-indent"
   -- tree symbol
   use 'simrat39/symbols-outline.nvim'
   -- unstable
@@ -123,7 +125,7 @@ vim.o.smartcase = true
 --Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
-vim.opt.autoindent = false
+vim.opt.autoindent = true
 vim.opt.scrolloff = 15
 vim.o.tabstop = 2 
 vim.o.softtabstop = 0 
@@ -272,10 +274,6 @@ vim.api.nvim_set_keymap('n', '<leader>sr', [[<cmd>Telescope registers theme=get_
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>SymbolsOutline<cr>]], { noremap   = true, silent = true })
 
 -- Treesitter configuration
-require('orgmode').setup({
-  org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
-  org_default_notes_file = '~/Dropbox/org/refile.org',
-})
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.org = {
   install_info = {
@@ -285,13 +283,22 @@ parser_config.org = {
   },
   filetype = 'org',
 }
+require('orgmode').setup({
+  org_agenda_files = {'~/notes/work/*'},
+  org_default_notes_file = '~/notes/work/long.org',
+  mappings = {
+    org = {
+      org_toggle_checkbox = '<Leader>k'
+    }
+  }
+})
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
 ensure_installed = 'maintained',
   highlight = {
-    enable = true, -- false will disable the whole extension
+    enable = true,
     disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
-    additional_vim_regex_highlighting = {'org'},
+    additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal) -- false will disable the whole extension
   },
   incremental_selection = {
     enable = true,
@@ -304,6 +311,7 @@ ensure_installed = 'maintained',
   },
   indent = {
     enable = true,
+    disable = {"python",},
   },
   autopairs = { enable = true },
 	autotag = {

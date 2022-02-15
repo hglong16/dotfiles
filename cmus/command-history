@@ -1,3 +1,9 @@
+add :LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim/
+refresh 
+add Vùng Ký Ức - Chillies (Official Music Video)-T0sHaz4H9MQ.opus
+search-next haanh
+search-next 
+aaa_mode
 q
 help cmus
 help
