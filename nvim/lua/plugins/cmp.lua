@@ -1,5 +1,6 @@
 local u = require("utils")
 local cmp = require("cmp")
+local lspkind = require'lspkind'
 
 
 cmp.setup({
@@ -8,6 +9,12 @@ cmp.setup({
             vim.fn["vsnip#anonymous"](args.body)
         end,
     },
+    formatting = {
+    format = lspkind.cmp_format({
+      with_text = false, -- do not show text alongside icons
+      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+    })
+  },
     completion = {
         completeopt = "menu,menuone,noinsert",
         get_trigger_characters = function(trigger_characters)
@@ -58,9 +65,12 @@ cmp.setup({
         },
   },
     sources = {
+        { name = "nvim_lsp_signature_help" },
         { name = "nvim_lsp" },
+        { name = "nvim_lua" },
         { name = "buffer" },
         { name = "path" },
-        { name = "vsnip", priority = 9999 },
+        { name = "vsnip"},
+        { name = "orgmode"},
     },
 })

@@ -23,9 +23,12 @@ require('packer').startup(function()
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   use 'knubie/vim-kitty-navigator'
+  use "folke/todo-comments.nvim"
+  use "nvim-orgmode/orgmode"
+  -- tree symbol
+  use 'simrat39/symbols-outline.nvim'
   -- unstable
 
-  use 'CRAG666/code_runner.nvim'
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {
@@ -59,6 +62,7 @@ require('packer').startup(function()
 
   -- nvim lsp
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use 'ray-x/lsp_signature.nvim'
   use("folke/lua-dev.nvim") -- better sumneko_lua settings
   use("b0o/schemastore.nvim")
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'
@@ -73,7 +77,10 @@ require('packer').startup(function()
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-vsnip",
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
             "rafamadriz/friendly-snippets",
+            "onsails/lspkind-nvim",
             "lukas-reineke/cmp-under-comparator"
         },
         config = config("plugins.cmp"),
@@ -90,6 +97,7 @@ require('packer').startup(function()
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'junegunn/vim-easy-align'
   use 'romgrk/barbar.nvim'
+  use 'norcalli/nvim-colorizer.lua'
 end)
 
 --Set highlight on search
@@ -116,16 +124,30 @@ vim.o.smartcase = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 vim.opt.autoindent = false
-vim.opt.scrolloff = 4
+vim.opt.scrolloff = 15
 vim.o.tabstop = 2 
 vim.o.softtabstop = 0 
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.clipboard = "unnamed"
 
+-- symbon outline 
+vim.g.symbols_outline = {
+  width = 90,
+  auto_close = true,
+}
+
 --Set colorscheme
 vim.o.termguicolors = true
 vim.cmd [[colorscheme kanagawa]]
+vim.cmd[[hi Pmenu guibg='NONE']]
+
+require 'colorizer'.setup({
+	'*';
+  c = { rgb_fn = true; };
+  python = { rgb_fn = true; };
+})
+
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -144,9 +166,14 @@ require('lualine').setup {
 require('Comment').setup()
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('t', 'jj', [[<c-\><c-n>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>w', '<cmd>w<cr>', { silent = true })
+vim.api.nvim_set_keymap('n', '<Space>w', [[<cmd>w<cr>]], {noremap = true, silent = true })
+-- lightspeed omni
+vim.cmd [[nmap <expr> s reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_omni_s" : "s"]]
 -- Nvim tree
-require'nvim-tree'.setup()
+require'nvim-tree'.setup({
+
+})
+vim.g.nvim_tree_indent_markers = 1
 vim.api.nvim_set_keymap('n','<C-n>', ':NvimTreeToggle<cr>',{ silent = true })
 --Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
@@ -174,6 +201,8 @@ vim.g.indent_blankline_char = '┊'
 vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_show_trailing_blankline_indent = false
+vim.g.indent_blankline_show_current_context = true
+vim.g.indent_blankline_show_current_context_start = true
 
 -- Gitsigns
 require('gitsigns').setup {
@@ -187,17 +216,6 @@ require('gitsigns').setup {
   keymaps = {},
 }
 
-  -- code runner
-require('code_runner').setup({
-  filetype = {
-    java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
-    python = "python -U",
-    typescript = "deno run",
-    rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt",
-    cpp = "g++ -o $fileNameWithoutExt $fileName && ./$fileNameWithoutExt"
-  },
-})
-vim.api.nvim_set_keymap('n', '<leader>7', ':w<cr> :RunCode<CR>', { noremap = true, silent = false })
 
 -- Telescope
 require('telescope').setup {
@@ -221,10 +239,11 @@ require('telescope').setup {
 		},
 	},
   picker = {
-		lsp_references = { theme = 'dropdown' },
-    lsp_code_actions = { theme = 'dropdown' },
-    lsp_definitions = { theme = 'dropdown' },
-    lsp_implementations = { theme = 'dropdown' },
+		lsp_references = { theme = 'ivy' },
+    lsp_code_actions = { theme = 'get_ivy' },
+    lsp_definitions = { theme = 'ivy' },
+    lsp_implementations = { theme = 'ivy' },
+    tags = { theme = 'ivy'},
     buffers = {
       sort_lastused = true,
       previewer = false,
@@ -238,30 +257,46 @@ require('telescope').load_extension 'file_browser'
 require('telescope').load_extension 'project'
 
 --Add leader shortcuts
-vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers() theme=get_ivy<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><tab>', [[<cmd>lua require('telescope.builtin').buffers() theme=get_ivy<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>p', [[<cmd>Telescope find_files theme=get_dropdown<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>f', [[<cmd>Telescope current_buffer_fuzzy_find theme=get_ivy<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>sh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>st', [[<cmd>Telescope tags theme=get_ivy<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>o', [[<cmd>Telescope live_grep theme=get_dropdown<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ss', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true}<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>sg', [[<cmd>Telescope git_commits theme=get_dropdown<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>b', [[<cmd>Telescope file_browser theme=get_dropdown<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>9', [[<cmd>Telescope project theme=get_ivy<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>sr', [[<cmd>Telescope registers theme=get_ivy<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>SymbolsOutline<cr>]], { noremap   = true, silent = true })
 
 -- Treesitter configuration
+require('orgmode').setup({
+  org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
+  org_default_notes_file = '~/Dropbox/org/refile.org',
+})
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.org = {
+  install_info = {
+    url = 'https://github.com/milisims/tree-sitter-org',
+    revision = 'f110024d539e676f25b72b7c80b0fd43c34264ef',
+    files = {'src/parser.c', 'src/scanner.cc'},
+  },
+  filetype = 'org',
+}
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
 ensure_installed = 'maintained',
   highlight = {
     enable = true, -- false will disable the whole extension
+    disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+    additional_vim_regex_highlighting = {'org'},
   },
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = 'gnn',
+      init_selection  = 'gnn',
       node_incremental = 'grn',
       scope_incremental = 'grc',
       node_decremental = 'grm',
@@ -313,3 +348,9 @@ ensure_installed = 'maintained',
 global = {}
 require'lsp'
 require'cmp'
+
+
+-- Todo
+-- Lua
+    require("todo-comments").setup {}
+

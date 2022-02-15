@@ -1,5 +1,10 @@
 local u = require("utils")
 
+require('lsp_signature').setup ({ 
+  bind = true, 
+  handler_opts = { border = 'rounded' },
+  zindex = 50,
+})
 local lsp = vim.lsp
 local api = vim.api
 
@@ -89,8 +94,8 @@ local on_attach = function(client, bufnr)
 
     u.buf_map(bufnr, "n", "gr", ":LspRef<CR>")
     u.buf_map(bufnr, "n", "gd", ":LspDef<CR>")
-    u.buf_map(bufnr, "n", "ga", ":LspAct<CR>")
-    u.buf_map(bufnr, "v", "ga", "<Esc><cmd> LspRangeAct<CR>")
+    u.buf_map(bufnr, "n", "<leader>a", ":LspAct<CR>")
+    u.buf_map(bufnr, "v", "<leader>a", "<Esc><cmd> LspRangeAct<CR>")
     u.buf_map(bufnr, "n", "<leader>m", "<cmd> LspFormatting<CR>")
 
     if client.supports_method("textDocument/formatting") then
@@ -103,6 +108,11 @@ local on_attach = function(client, bufnr)
     end
 
     require("illuminate").on_attach(client)
+    require('lsp_signature').on_attach({ 
+    bind = true, 
+    handler_opts = { border = "rounded" }
+    })
+
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -112,10 +122,12 @@ for _, server in ipairs({
     "bashls",
     -- "denols",
     "clangd",
+    "rls",
     "cmake",
     "eslint",
     "html",
     "emmet-ls",
+    "pyright",
     "jsonls",
     "null-ls",
     "sumneko_lua",
