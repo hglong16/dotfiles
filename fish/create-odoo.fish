@@ -4,6 +4,7 @@
 
 mkdir src wirazd static report models controllers views security data demo i18n
 mkdir static/description
+# mkdir static/src
 mkdir static/src
 mkdir static/src/js static/src/xml static/src/csss static/src/sccs
 touch src/__init__.py
@@ -24,5 +25,15 @@ echo "{
 
 
 tree
-
+echo "Create .gitignore"
+touch .gitignore
+echo "# dotfile, with exception" >>.gitignore
+echo ".*" >>.gitignore
+echo "# python compile file" >>.gitignore
+echo "*.py[co]" >>.gitignore
+echo "#not track subdirectory" >>.gitignore
+echo /env/ >>.gitignore
+echo /src/ >>.gitignore
+echo /filestore/ >>.gitignore
+echo /logs/ >>.gitignore
 echo DONE
