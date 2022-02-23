@@ -2,7 +2,10 @@
 # create new folder for odoo dev
 
 
-mkdir src wirazd models controllers views security data demo i18n
+mkdir src wirazd static report models controllers views security data demo i18n
+mkdir static/description
+mkdir static/src
+mkdir static/src/js static/src/xml static/src/csss static/src/sccs
 touch src/__init__.py
 touch controllers/__init__.py
 touch wirazd/__init__.py
@@ -20,23 +23,6 @@ echo "{
         }" >>__manifest__.py
 
 
+tree
 
-
-echo -n ".
-├── __init__.py
-├── __manifest__.py
-├── controllers
-│   └── __init__.py
-├── data
-├── demo
-├── i18n
-├── models
-├── security
-├── src
-│   └── __init__.py
-├── views
-│   └── views.xml
-└── wirazd
-    └── __init__.py
-
-Create 9 directories, 6 files "
+echo DONE

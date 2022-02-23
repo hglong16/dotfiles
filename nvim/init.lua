@@ -1,4 +1,5 @@
 -- Install packer
+require "impatient"
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -25,6 +26,7 @@ require('packer').startup(function()
   use 'knubie/vim-kitty-navigator'
   use "folke/todo-comments.nvim"
   use "nvim-orgmode/orgmode"
+  use "lewis6991/impatient.nvim"
   -- indent for python
   use "Vimjas/vim-python-pep8-indent"
   -- tree symbol

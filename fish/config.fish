@@ -10,7 +10,7 @@ alias ls "ls -p -G"
 alias la "ls -A"
 alias ll "ls -l"
 alias lla "ll - A"
-alias odoo-run "/Users/hglong/Projects/8_Odoo/odoo/odoo-bin -c /Users/hglong/Projects/8_Odoo/odoo/myodoo.cfg"
+alias odoo-cr-folder "~/.config/fish/create-odoo.fish"
 
 
 set -gx EDITOR nvim
