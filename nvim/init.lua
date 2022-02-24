@@ -56,6 +56,7 @@ require('packer').startup(function()
 
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use 'kdheepak/lazygit.nvim'
 
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use 'nvim-treesitter/nvim-treesitter'
@@ -185,8 +186,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 --Remap for dealing with word wrap
-vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+-- vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+-- vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 -- Highlight on yank
 vim.cmd [[
@@ -274,6 +275,7 @@ vim.api.nvim_set_keymap('n', '<leader>b', [[<cmd>Telescope file_browser theme=ge
 vim.api.nvim_set_keymap('n', '<leader>9', [[<cmd>Telescope project theme=get_ivy<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>sr', [[<cmd>Telescope registers theme=get_ivy<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>SymbolsOutline<cr>]], { noremap   = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gg', [[<cmd>LazyGit<cr>]], { noremap   = true, silent = true })
 
 -- Treesitter configuration
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()

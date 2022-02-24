@@ -11,6 +11,7 @@ alias la "ls -A"
 alias ll "ls -l"
 alias lla "ll - A"
 alias odoo-cr-folder "~/.config/fish/create-odoo.fish"
+alias odoo-cr-gitignore "/Users/hglong/.config/fish/create_gitignore_odoo.fish"
 
 
 set -gx EDITOR nvim

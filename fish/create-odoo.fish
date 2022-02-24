@@ -28,6 +28,7 @@ echo "Create .gitignore"
 touch .gitignore
 echo "# dotfile, with exception" >>.gitignore
 echo ".*" >>.gitignore
+echo "!.gitignore" >>.gitignore
 echo "# python compile file" >>.gitignore
 echo "*.py[co]" >>.gitignore
 echo "#not track subdirectory" >>.gitignore
