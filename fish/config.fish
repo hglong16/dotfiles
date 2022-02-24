@@ -19,6 +19,7 @@ set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 set -gx PATH ~/.poetry/bin $PATH
+set -gx PYTHONPATH /Users/hglong/Projects/odoo $PYTHONPATH
 # NodeJS
 
 set -gx PATH node_modules/.bin $PATH
