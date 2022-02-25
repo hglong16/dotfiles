@@ -15,6 +15,7 @@ alias odoo-cr-gitignore "/Users/hglong/.config/fish/create_gitignore_odoo.fish"
 
 
 set -gx EDITOR nvim
+#lemin in path
 
 set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
