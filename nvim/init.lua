@@ -27,6 +27,8 @@ require('packer').startup(function()
   use "folke/todo-comments.nvim"
   use "nvim-orgmode/orgmode"
   use "lewis6991/impatient.nvim"
+  use "max397574/better-escape.nvim"
+  
   -- indent for python
   use "Vimjas/vim-python-pep8-indent"
   -- tree symbol
@@ -170,8 +172,8 @@ require('lualine').setup {
 
 --Enable Comment.nvim
 require('Comment').setup()
-vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('t', 'jj', [[<c-\><c-n>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<Esc>', [[<c-\><c-n>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Space>w', [[<cmd>w<cr>]], {noremap = true, silent = true })
 -- lightspeed omni
 vim.cmd [[nmap <expr> s reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_omni_s" : "s"]]
@@ -366,4 +368,9 @@ require'cmp'
 -- Todo
 -- Lua
 require("todo-comments").setup {}
-
+require"better_escape".setup{
+  mappings = {"jk"},
+  timeout = vim.o.timeoutlen,
+  clear_empty_lines = false,
+  keys = "<Esc>",
+}
