@@ -1,0 +1,36 @@
+add :LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim/
+refresh 
+add Vùng Ký Ức - Chillies (Official Music Video)-T0sHaz4H9MQ.opus
+search-next haanh
+search-next 
+aaa_mode
+q
+help cmus
+help
+cmus man
+man
+add ~/Desktop/Music/
+fset missing-tag=!stream&(artist=""|album=""|title=""|tracknumber=-1|date=-1)81
+colorscheme gruvbox
+colorscheme solarized-dar
+colorscheme gruvbox-alt
+fset ogg=filename="*.ogg"
+colorscheme green-mono-88
+colorscheme xterm-white
+colorscheme solarized-dark
+colorscheme cyan
+colorscheme amazon
+color
+colorscheme dracula
+colorscheme 
+bind common <key> colorscheme 
+vol 33
+vol 20
+vol 99
+vol 12
+vol 11
+vol 10
+vol 3
+vol ++
+vol +
+h
