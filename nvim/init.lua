@@ -27,7 +27,8 @@ require('packer').startup(function()
   use "folke/todo-comments.nvim"
   use "nvim-orgmode/orgmode"
   use "lewis6991/impatient.nvim"
-  use "max397574/better-escape.nvim"
+  use {"max397574/better-escape.nvim" }
+  use "stevearc/dressing.nvim"
   
   -- indent for python
   use "Vimjas/vim-python-pep8-indent"
@@ -324,7 +325,6 @@ ensure_installed = 'maintained',
 	autotag = {
         enable = true,
     },
-    autotag = { enable = true,},
   textobjects = {
     select = {
       enable = true,
@@ -368,9 +368,6 @@ require'cmp'
 -- Todo
 -- Lua
 require("todo-comments").setup {}
-require"better_escape".setup{
-  mappings = {"jk"},
-  timeout = vim.o.timeoutlen,
-  clear_empty_lines = false,
-  keys = "<Esc>",
+require("better_escape").setup{
+  mapping = {"jk"}
 }

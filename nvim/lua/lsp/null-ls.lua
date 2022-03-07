@@ -31,6 +31,7 @@ local sources = {
     b.diagnostics.flake8,
     b.diagnostics.markdownlint,
     b.diagnostics.teal,
+    b.diagnostics.misspell,
     b.diagnostics.tsc,
     with_diagnostics_code(b.diagnostics.shellcheck),
     -- code actions

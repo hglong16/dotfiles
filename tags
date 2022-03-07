@@ -14,6 +14,8 @@ $schema	.luarc.json	/^    "$schema": "https:\/\/raw.githubusercontent.com\/sumne
 0	.luarc.json	/^        "undefined-doc-name",$/;"	s	array:Lua.diagnostics.disable
 1	.luarc.json	/^        "undefined-global",$/;"	s	array:Lua.diagnostics.disable
 2	.luarc.json	/^        "duplicate-doc-class"$/;"	s	array:Lua.diagnostics.disable
+EOF	install-misspell.sh	/^  cat <<EOF$/;"	h
+EOF	install-misspell.sh	/^cat \/dev\/null <<EOF$/;"	h
 Lua.diagnostics.disable	.luarc.json	/^    "Lua.diagnostics.disable": [$/;"	a
 Lua.workspace.checkThirdParty	.luarc.json	/^    "Lua.workspace.checkThirdParty": false$/;"	b
 ["<S-tab>"]	nvim/lua/plugins/cmp.lua	/^        ["<S-tab>"] = cmp.mapping(function(fallback)$/;"	f
@@ -24,37 +26,59 @@ Lua.workspace.checkThirdParty	.luarc.json	/^    "Lua.workspace.checkThirdParty":
 [']m']	nvim/init.lua	/^        [']m'] = '@function.outer',$/;"	f
 ['af']	nvim/init.lua	/^        ['af'] = '@function.outer',$/;"	f
 ['if']	nvim/init.lua	/^        ['if'] = '@function.inner',$/;"	f
+adjust_arch	install-misspell.sh	/^adjust_arch() {$/;"	f
+adjust_format	install-misspell.sh	/^adjust_format() {$/;"	f
+adjust_os	install-misspell.sh	/^adjust_os() {$/;"	f
 buf_map	nvim/lua/utils.lua	/^M.buf_map = function(bufnr, mode, target, source, opts)$/;"	f	unknown:M
+check_platform	install-misspell.sh	/^check_platform() {$/;"	f
 colors_customization	nvim/plugin/colors.vim	/^augroup colors_customization$/;"	a
 command	nvim/lua/utils.lua	/^M.command = function(name, fn)$/;"	f	unknown:M
 condition	nvim/lua/lsp/null-ls.lua	/^        condition = function(utils)$/;"	f
 config	nvim/init.lua	/^local config = function(name)$/;"	f
 disable	nvim/lua/plugins/autopairs.lua	/^local disable = function()$/;"	f
+echoerr	install-misspell.sh	/^echoerr() {$/;"	f
 enable	nvim/lua/plugins/autopairs.lua	/^local enable = function()$/;"	f
 enabled_layouts fat	kitty/kitty.conf	/^enabled_layouts fat:bias=50;full_size=1;mirrored=false$/;"	k
 encode_key_mapping	kitty/pass_keys.py	/^def encode_key_mapping(key_mapping):$/;"	f
 error_msg	nvim/plugin/packer_compiled.lua	/^local no_errors, error_msg = pcall(function()$/;"	f
+execute	install-misspell.sh	/^execute() {$/;"	f
 expand	nvim/lua/plugins/cmp.lua	/^        expand = function(args)$/;"	f
 formatting	nvim/lua/lsp/init.lua	/^local formatting = function(bufnr)$/;"	f
 get_map_options	nvim/lua/utils.lua	/^local get_map_options = function(custom_options)$/;"	f
 get_system_output	nvim/lua/utils.lua	/^M.get_system_output = function(cmd)$/;"	f	unknown:M
 get_trigger_characters	nvim/lua/plugins/cmp.lua	/^        get_trigger_characters = function(trigger_characters)$/;"	f
+github_api	install-misspell.sh	/^github_api() {$/;"	f
+github_last_release	install-misspell.sh	/^github_last_release() {$/;"	f
 handle_result	kitty/neighboring_window.py	/^def handle_result(args, result, target_window_id, boss):$/;"	f
 handle_result	kitty/pass_keys.py	/^def handle_result(args, result, target_window_id, boss):$/;"	f
+hash_sha256	install-misspell.sh	/^hash_sha256() {$/;"	f
+hash_sha256_verify	install-misspell.sh	/^hash_sha256_verify() {$/;"	f
 hglong dotfile	README.md	/^# hglong dotfile$/;"	c
+http_download	install-misspell.sh	/^http_download() {$/;"	f
 input	nvim/lua/utils.lua	/^M.input = function(keys, mode)$/;"	f	unknown:M
+is_command	install-misspell.sh	/^is_command() {$/;"	f
 is_file	nvim/lua/utils.lua	/^M.is_file = function(path)$/;"	f	unknown:M
+is_supported_platform	install-misspell.sh	/^is_supported_platform() {$/;"	f
 is_window_vim	kitty/pass_keys.py	/^def is_window_vim(window, vim_id):$/;"	f
 k combine	kitty/kitty.conf	/^map cmd+k combine : clear_terminal scrollback active : send_text normal \\x0c$/;"	k
 listen_on unix	kitty/kitty.conf	/^listen_on unix:\/tmp\/mykitty$/;"	k
+log_crit	install-misspell.sh	/^log_crit() {$/;"	f
+log_debug	install-misspell.sh	/^log_debug() {$/;"	f
+log_err	install-misspell.sh	/^log_err() {$/;"	f
+log_info	install-misspell.sh	/^log_info() {$/;"	f
+log_prefix	install-misspell.sh	/^log_prefix() {$/;"	f
+log_priority	install-misspell.sh	/^log_priority() {$/;"	f
+log_set_priority	install-misspell.sh	/^log_set_priority() {$/;"	f
 lua_command	nvim/lua/utils.lua	/^M.lua_command = function(name, fn)$/;"	f	unknown:M
 main	kitty/neighboring_window.py	/^def main():$/;"	f
 main	kitty/pass_keys.py	/^def main():$/;"	f
 make_floating_window	nvim/lua/utils.lua	/^M.make_floating_window = function(custom_window_config, height_ratio, width_ratio)$/;"	f	unknown:M
 map	nvim/lua/utils.lua	/^M.map = function(mode, target, source, opts)$/;"	f	unknown:M
+mktmpdir	install-misspell.sh	/^mktmpdir() {$/;"	f
 on_attach	nvim/lua/lsp/eslint.lua	/^            on_attach = function(client, bufnr)$/;"	f
 on_attach	nvim/lua/lsp/init.lua	/^local on_attach = function(client, bufnr)$/;"	f
 on_attach	nvim/lua/lsp/tsserver.lua	/^        on_attach = function(client, bufnr)$/;"	f
+parse_args	install-misspell.sh	/^parse_args() {$/;"	f
 reset_autopairs	nvim/lua/plugins/autopairs.lua	/^global.reset_autopairs = function()$/;"	f	unknown:global
 s:setup_colors	nvim/plugin/colors.vim	/^function! s:setup_colors() abort$/;"	f
 save_profiles	nvim/plugin/packer_compiled.lua	/^local function save_profiles(threshold)$/;"	f
@@ -72,10 +96,17 @@ setup	nvim/lua/lsp/rls.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	u
 setup	nvim/lua/lsp/sumneko_lua.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
 setup	nvim/lua/lsp/tsserver.lua	/^M.setup = function(on_attach, capabilities)$/;"	f	unknown:M
 t	nvim/lua/utils.lua	/^M.t = function(str)$/;"	f	unknown:M
+tag_to_version	install-misspell.sh	/^tag_to_version() {$/;"	f
 time	nvim/plugin/packer_compiled.lua	/^    time = function(chunk, start) end$/;"	f
 time	nvim/plugin/packer_compiled.lua	/^    time = function(chunk, start)$/;"	f
 toggle_autopairs	nvim/lua/plugins/autopairs.lua	/^global.toggle_autopairs = function()$/;"	f	unknown:global
 try_loadstring	nvim/plugin/packer_compiled.lua	/^local function try_loadstring(s, component, name)$/;"	f
+uname_arch	install-misspell.sh	/^uname_arch() {$/;"	f
+uname_arch_check	install-misspell.sh	/^uname_arch_check() {$/;"	f
+uname_os	install-misspell.sh	/^uname_os() {$/;"	f
+uname_os_check	install-misspell.sh	/^uname_os_check() {$/;"	f
+untar	install-misspell.sh	/^untar() {$/;"	f
+usage	install-misspell.sh	/^usage() {$/;"	f
 warn	nvim/lua/utils.lua	/^M.warn = function(msg)$/;"	f	unknown:M
 with_diagnostics_code	nvim/lua/lsp/null-ls.lua	/^local with_diagnostics_code = function(builtin)$/;"	f
 with_root_file	nvim/lua/lsp/null-ls.lua	/^local with_root_file = function(builtin, file)$/;"	f
