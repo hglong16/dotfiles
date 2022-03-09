@@ -29,6 +29,7 @@ require('packer').startup(function()
   use "lewis6991/impatient.nvim"
   use {"max397574/better-escape.nvim" }
   use "stevearc/dressing.nvim"
+  use "lewis6991/spellsitter.nvim"
   
   -- indent for python
   use "Vimjas/vim-python-pep8-indent"
@@ -128,6 +129,7 @@ vim.opt.undofile = true
 --Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.o.spell = true
 
 --Decrease update time
 vim.o.updatetime = 250
@@ -371,3 +373,4 @@ require("todo-comments").setup {}
 require("better_escape").setup{
   mapping = {"jk"}
 }
+require"spellsitter".setup()
