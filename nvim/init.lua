@@ -30,7 +30,6 @@ require('packer').startup(function()
   use {"max397574/better-escape.nvim" }
   use "stevearc/dressing.nvim"
   use "lewis6991/spellsitter.nvim"
-  
   -- indent for python
   use "Vimjas/vim-python-pep8-indent"
   -- tree symbol
@@ -302,6 +301,7 @@ require('orgmode').setup({
     }
   }
 })
+require('orgmode').setup_ts_grammar()
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
 ensure_installed = 'maintained',
