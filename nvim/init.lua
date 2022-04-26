@@ -29,7 +29,7 @@ require('packer').startup(function()
   use {"max397574/better-escape.nvim" }
   use "stevearc/dressing.nvim"
   use "lewis6991/spellsitter.nvim"
-  use {'stevearc/gkeep.nvim', run = ':UpdateRemotePlugins'}
+  use "Pocco81/TrueZen.nvim"
   -- indent for python
   use "Vimjas/vim-python-pep8-indent"
   -- tree symbol
@@ -42,7 +42,19 @@ require('packer').startup(function()
       'kyazdani42/nvim-web-devicons', -- optional, for file icon
     }
 }
-
+use {
+  'chipsenkbeil/distant.nvim',
+  config = function()
+    require('distant').setup {
+      -- Applies Chip's personal settings to every machine you connect to
+      --
+      -- 1. Ensures that distant servers terminate with no connections
+      -- 2. Provides navigation bindings for remote directories
+      -- 3. Provides keybinding to jump into a remote file's parent directory
+      ['*'] = require('distant.settings').chip_default()
+    }
+  end
+}
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -143,8 +155,10 @@ vim.o.clipboard = "unnamed"
 
 -- symbon outline 
 vim.g.symbols_outline = {
-  width = 90,
+  width = 27,
   auto_close = true,
+  auto_preview = false,
+
 }
 
 --Set colorscheme
@@ -203,6 +217,7 @@ vim.cmd [[
 ]]
 
 	-- always start in insert mode
+vim.cmd("set laststatus=3")
 vim.cmd("autocmd TermOpen * startinsert")
 -- disable line numbers
 vim.cmd("autocmd TermOpen * setlocal nonumber norelativenumber")
@@ -283,9 +298,17 @@ vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>SymbolsOutline<cr>]], { n
 vim.api.nvim_set_keymap('n', '<leader>gg', [[<cmd>LazyGit<cr>]], { noremap   = true, silent = true })
 
 -- Treesitter configuration
--- Parsers must be installed manually via :TSInstall
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.org = {
+  install_info = {
+    url = 'https://github.com/milisims/tree-sitter-org',
+    revision = 'f110024d539e676f25b72b7c80b0fd43c34264ef',
+    files = {'src/parser.c', 'src/scanner.cc'},
+  },
+  filetype = 'org',
+}
 require('nvim-treesitter.configs').setup {
-ensure_installed = 'maintained',
+ensure_installed = 'all',
   highlight = {
     enable = true,
     disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
@@ -355,3 +378,73 @@ require("better_escape").setup{
   mapping = {"jk"}
 }
 require"spellsitter".setup()
+local true_zen = require("true-zen")
+
+true_zen.setup({
+	ui = {
+		bottom = {
+			laststatus = 3,
+			ruler = true,
+			showmode = true,
+			showcmd = true,
+			cmdheight = 3,
+		},
+		top = {
+			showtabline = 0,
+		},
+		left = {
+			number = true,
+			relativenumber = true,
+			signcolumn = "yes",
+		},
+	},
+	modes = {
+		ataraxis = {
+			left_padding = 32,
+			right_padding = 32,
+			top_padding = 0,
+			bottom_padding = 0,
+			ideal_writing_area_width = {0},
+			auto_padding = true,
+			keep_default_fold_fillchars = true,
+			custom_bg = {"none", ""},
+			bg_configuration = true,
+			quit = "untoggle",
+			ignore_floating_windows = true,
+			affected_higroups = {
+				NonText = true,
+				FoldColumn = true,
+				ColorColumn = true,
+				VertSplit = true,
+				StatusLine = true,
+				StatusLineNC = true,
+				SignColumn = true,
+			},
+		},
+		focus = {
+			margin_of_error = 5,
+			focus_method = "experimental"
+		},
+	},
+	integrations = {
+		vim_gitgutter = false,
+		galaxyline = false,
+		tmux = false,
+		gitsigns = false,
+		nvim_bufferline = false,
+		limelight = false,
+		twilight = false,
+		vim_airline = false,
+		vim_powerline = false,
+		vim_signify = false,
+		express_line = false,
+		lualine = true,
+		lightline = false,
+		feline = false
+	},
+	misc = {
+		on_off_commands = false,
+		ui_elements_commands = false,
+		cursor_by_mode = false,
+	}
+})

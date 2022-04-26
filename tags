@@ -34,11 +34,12 @@ check_platform	install-misspell.sh	/^check_platform() {$/;"	f
 colors_customization	nvim/plugin/colors.vim	/^augroup colors_customization$/;"	a
 command	nvim/lua/utils.lua	/^M.command = function(name, fn)$/;"	f	unknown:M
 condition	nvim/lua/lsp/null-ls.lua	/^        condition = function(utils)$/;"	f
+config	nvim/init.lua	/^  config = function()$/;"	f
 config	nvim/init.lua	/^local config = function(name)$/;"	f
 disable	nvim/lua/plugins/autopairs.lua	/^local disable = function()$/;"	f
 echoerr	install-misspell.sh	/^echoerr() {$/;"	f
 enable	nvim/lua/plugins/autopairs.lua	/^local enable = function()$/;"	f
-enabled_layouts fat	kitty/kitty.conf	/^enabled_layouts fat:bias=50;full_size=1;mirrored=false$/;"	k
+enabled_layouts tall	kitty/kitty.conf	/^enabled_layouts tall:all:bias=50;full_size=1;mirrored=false$/;"	k
 encode_key_mapping	kitty/pass_keys.py	/^def encode_key_mapping(key_mapping):$/;"	f
 error_msg	nvim/plugin/packer_compiled.lua	/^local no_errors, error_msg = pcall(function()$/;"	f
 execute	install-misspell.sh	/^execute() {$/;"	f
@@ -61,6 +62,8 @@ is_file	nvim/lua/utils.lua	/^M.is_file = function(path)$/;"	f	unknown:M
 is_supported_platform	install-misspell.sh	/^is_supported_platform() {$/;"	f
 is_window_vim	kitty/pass_keys.py	/^def is_window_vim(window, vim_id):$/;"	f
 k combine	kitty/kitty.conf	/^map cmd+k combine : clear_terminal scrollback active : send_text normal \\x0c$/;"	k
+lastCheck	configstore/nodemon.json	/^	"lastCheck": 1650887868684$/;"	n
+lastUpdateCheck	configstore/update-notifier-nodemon.json	/^	"lastUpdateCheck": 1650887945743$/;"	n
 listen_on unix	kitty/kitty.conf	/^listen_on unix:\/tmp\/mykitty$/;"	k
 log_crit	install-misspell.sh	/^log_crit() {$/;"	f
 log_debug	install-misspell.sh	/^log_debug() {$/;"	f
@@ -78,6 +81,7 @@ mktmpdir	install-misspell.sh	/^mktmpdir() {$/;"	f
 on_attach	nvim/lua/lsp/eslint.lua	/^            on_attach = function(client, bufnr)$/;"	f
 on_attach	nvim/lua/lsp/init.lua	/^local on_attach = function(client, bufnr)$/;"	f
 on_attach	nvim/lua/lsp/tsserver.lua	/^        on_attach = function(client, bufnr)$/;"	f
+optOut	configstore/update-notifier-nodemon.json	/^	"optOut": false,$/;"	b
 parse_args	install-misspell.sh	/^parse_args() {$/;"	f
 reset_autopairs	nvim/lua/plugins/autopairs.lua	/^global.reset_autopairs = function()$/;"	f	unknown:global
 s:setup_colors	nvim/plugin/colors.vim	/^function! s:setup_colors() abort$/;"	f
