@@ -30,6 +30,7 @@ require('packer').startup(function()
   use "stevearc/dressing.nvim"
   use "lewis6991/spellsitter.nvim"
   use "Pocco81/TrueZen.nvim"
+  use 'karb94/neoscroll.nvim'
   -- indent for python
   use "Vimjas/vim-python-pep8-indent"
   -- tree symbol
@@ -370,8 +371,6 @@ global = {}
 require'lsp'
 require'cmp'
 
-
--- Todo
 -- Lua
 require("todo-comments").setup {}
 require("better_escape").setup{
@@ -448,3 +447,4 @@ true_zen.setup({
 		cursor_by_mode = false,
 	}
 })
+require('neoscroll').setup()
