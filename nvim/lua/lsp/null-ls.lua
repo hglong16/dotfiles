@@ -29,6 +29,7 @@ local sources = {
     with_root_file(b.diagnostics.selene, "selene.toml"),
     b.diagnostics.write_good,
     b.diagnostics.flake8,
+    b.diagnostics.codespell,
     b.diagnostics.markdownlint,
     b.diagnostics.teal,
     b.diagnostics.tsc,

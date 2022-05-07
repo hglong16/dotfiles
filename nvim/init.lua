@@ -25,8 +25,12 @@ require('packer').startup(function()
   use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   use 'knubie/vim-kitty-navigator'
   use "folke/todo-comments.nvim"
-  use "nvim-orgmode/orgmode"
   use "lewis6991/impatient.nvim"
+  use {"max397574/better-escape.nvim" }
+  use "stevearc/dressing.nvim"
+  use "lewis6991/spellsitter.nvim"
+  use "Pocco81/TrueZen.nvim"
+  use 'karb94/neoscroll.nvim'
   -- indent for python
   use "Vimjas/vim-python-pep8-indent"
   -- tree symbol
@@ -39,7 +43,19 @@ require('packer').startup(function()
       'kyazdani42/nvim-web-devicons', -- optional, for file icon
     }
 }
-
+use {
+  'chipsenkbeil/distant.nvim',
+  config = function()
+    require('distant').setup {
+      -- Applies Chip's personal settings to every machine you connect to
+      --
+      -- 1. Ensures that distant servers terminate with no connections
+      -- 2. Provides navigation bindings for remote directories
+      -- 3. Provides keybinding to jump into a remote file's parent directory
+      ['*'] = require('distant.settings').chip_default()
+    }
+  end
+}
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -68,7 +84,6 @@ require('packer').startup(function()
   -- nvim lsp
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'williamboman/nvim-lsp-installer'
-  use 'ray-x/lsp_signature.nvim'
   use("folke/lua-dev.nvim") -- better sumneko_lua settings
   use("b0o/schemastore.nvim")
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'
@@ -84,9 +99,9 @@ require('packer').startup(function()
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-vsnip",
             "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-nvim-lsp-signature-help",
             "rafamadriz/friendly-snippets",
             "onsails/lspkind-nvim",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
             "lukas-reineke/cmp-under-comparator"
         },
         config = config("plugins.cmp"),
@@ -125,6 +140,7 @@ vim.opt.undofile = true
 --Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.o.spell = true
 
 --Decrease update time
 vim.o.updatetime = 250
@@ -139,8 +155,10 @@ vim.o.clipboard = "unnamed"
 
 -- symbon outline 
 vim.g.symbols_outline = {
-  width = 90,
+  width = 27,
   auto_close = true,
+  auto_preview = false,
+
 }
 
 --Set colorscheme
@@ -170,8 +188,8 @@ require('lualine').setup {
 
 --Enable Comment.nvim
 require('Comment').setup()
-vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('t', 'jj', [[<c-\><c-n>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<Esc>', [[<c-\><c-n>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Space>w', [[<cmd>w<cr>]], {noremap = true, silent = true })
 -- lightspeed omni
 vim.cmd [[nmap <expr> s reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_omni_s" : "s"]]
@@ -199,6 +217,7 @@ vim.cmd [[
 ]]
 
 	-- always start in insert mode
+vim.cmd("set laststatus=3")
 vim.cmd("autocmd TermOpen * startinsert")
 -- disable line numbers
 vim.cmd("autocmd TermOpen * setlocal nonumber norelativenumber")
@@ -288,18 +307,8 @@ parser_config.org = {
   },
   filetype = 'org',
 }
-require('orgmode').setup({
-  org_agenda_files = {'~/notes/work/*'},
-  org_default_notes_file = '~/notes/work/long.org',
-  mappings = {
-    org = {
-      org_toggle_checkbox = '<Leader>k'
-    }
-  }
-})
--- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
-ensure_installed = 'maintained',
+ensure_installed = 'all',
   highlight = {
     enable = true,
     disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
@@ -322,7 +331,6 @@ ensure_installed = 'maintained',
 	autotag = {
         enable = true,
     },
-    autotag = { enable = true,},
   textobjects = {
     select = {
       enable = true,
@@ -362,8 +370,85 @@ global = {}
 require'lsp'
 require'cmp'
 
-
--- Todo
 -- Lua
 require("todo-comments").setup {}
+require("better_escape").setup{
+  mapping = {"jk"}
+}
+require"spellsitter".setup()
+local true_zen = require("true-zen")
 
+true_zen.setup({
+	ui = {
+		bottom = {
+			laststatus = 3,
+			ruler = true,
+			showmode = true,
+			showcmd = true,
+			cmdheight = 3,
+		},
+		top = {
+			showtabline = 0,
+		},
+		left = {
+			number = true,
+			relativenumber = true,
+			signcolumn = "yes",
+		},
+	},
+	modes = {
+		ataraxis = {
+			left_padding = 32,
+			right_padding = 32,
+			top_padding = 0,
+			bottom_padding = 0,
+			ideal_writing_area_width = {0},
+			auto_padding = true,
+			keep_default_fold_fillchars = true,
+			custom_bg = {"none", ""},
+			bg_configuration = true,
+			quit = "untoggle",
+			ignore_floating_windows = true,
+			affected_higroups = {
+				NonText = true,
+				FoldColumn = true,
+				ColorColumn = true,
+				VertSplit = true,
+				StatusLine = true,
+				StatusLineNC = true,
+				SignColumn = true,
+			},
+		},
+		focus = {
+			margin_of_error = 5,
+			focus_method = "experimental"
+		},
+	},
+	integrations = {
+		vim_gitgutter = false,
+		galaxyline = false,
+		tmux = false,
+		gitsigns = false,
+		nvim_bufferline = false,
+		limelight = false,
+		twilight = false,
+		vim_airline = false,
+		vim_powerline = false,
+		vim_signify = false,
+		express_line = false,
+		lualine = true,
+		lightline = false,
+		feline = false
+	},
+	misc = {
+		on_off_commands = false,
+		ui_elements_commands = false,
+		cursor_by_mode = false,
+	}
+})
+require('neoscroll').setup()
+
+vim.api.nvim_set_keymap('n', '<leader>h', [[KittyNavigateLeft<cr>]], { noremap   = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-j>', [[KittyNavigateDown<cr>]], { noremap   = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-k>', [[KittyNavigateUp<cr>]], { noremap   = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-l>', [[KittyNavigateRight<cr>]], { noremap   = true, silent = true })

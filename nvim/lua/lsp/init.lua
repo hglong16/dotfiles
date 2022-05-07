@@ -1,9 +1,4 @@
 local u = require("utils")
-require('lsp_signature').setup ({ 
-  bind = true, 
-  handler_opts = { border = 'rounded' },
-  zindex = 50,
-})
 local lsp = vim.lsp
 local api = vim.api
 
@@ -11,7 +6,6 @@ local border_opts = { border = "single", focusable = false, scope = "line" }
 
 vim.diagnostic.config({ virtual_text = false, float = border_opts })
 
-lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, border_opts)
 lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, border_opts)
 
 -- use lsp formatting if it's available (and if it's good)
@@ -77,7 +71,6 @@ local on_attach = function(client, bufnr)
     u.lua_command("LspDiagNext", "vim.diagnostic.goto_next()")
     u.lua_command("LspDiagLine", "vim.diagnostic.open_float(nil, global.lsp.border_opts)")
     u.lua_command("LspDiagQuickfix", "vim.diagnostic.setqflist()")
-    u.lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
     u.lua_command("LspTypeDef", "vim.lsp.buf.type_definition()")
     u.lua_command("LspRangeAct", "vim.lsp.buf.range_code_action()")
 
@@ -89,7 +82,6 @@ local on_attach = function(client, bufnr)
     u.buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>")
     u.buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>")
     u.buf_map(bufnr, "n", "<Leader>q", ":LspDiagQuickfix<CR>")
-    u.buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>")
 
     u.buf_map(bufnr, "n", "gr", ":LspRef<CR>")
     u.buf_map(bufnr, "n", "gd", ":LspDef<CR>")
@@ -107,10 +99,6 @@ local on_attach = function(client, bufnr)
     end
 
     require("illuminate").on_attach(client)
-    require('lsp_signature').on_attach({ 
-    bind = true, 
-    handler_opts = { border = "rounded" }
-    })
 
 end
 
