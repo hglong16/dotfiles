@@ -20,6 +20,7 @@ set -gx EDITOR nvim
 set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
+set -gx PATH ~/.local/bin/pipenv $PATH
 set -gx PATH ~/.poetry/bin $PATH
 set -gx PYTHONPATH /Users/hglong/Projects/odoo $PYTHONPATH
 # NodeJS

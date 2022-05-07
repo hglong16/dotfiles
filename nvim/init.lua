@@ -84,7 +84,6 @@ use {
   -- nvim lsp
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'williamboman/nvim-lsp-installer'
-  use 'ray-x/lsp_signature.nvim'
   use("folke/lua-dev.nvim") -- better sumneko_lua settings
   use("b0o/schemastore.nvim")
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'
@@ -100,9 +99,9 @@ use {
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-vsnip",
             "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-nvim-lsp-signature-help",
             "rafamadriz/friendly-snippets",
             "onsails/lspkind-nvim",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
             "lukas-reineke/cmp-under-comparator"
         },
         config = config("plugins.cmp"),
@@ -448,3 +447,8 @@ true_zen.setup({
 	}
 })
 require('neoscroll').setup()
+
+vim.api.nvim_set_keymap('n', '<leader>h', [[KittyNavigateLeft<cr>]], { noremap   = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-j>', [[KittyNavigateDown<cr>]], { noremap   = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-k>', [[KittyNavigateUp<cr>]], { noremap   = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-l>', [[KittyNavigateRight<cr>]], { noremap   = true, silent = true })
