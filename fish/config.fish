@@ -53,3 +53,6 @@ set -g -x CXXFLAGS "-isystem /usr/local/include"
 set -g -x LDFLAGS "$LDFLAGS -L /usr/local/lib"
 set -gx PATH /usr/local/include $PATH
 set -gx PATH /usr/local/lib/ $PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/hglong/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/hglong/Downloads/google-cloud-sdk/path.fish.inc'; end
