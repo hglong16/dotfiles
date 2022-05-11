@@ -117,7 +117,6 @@ for _, server in ipairs({
     "pyright",
     "jsonls",
     "null-ls",
-    "sumneko_lua",
     "tsserver",
 }) do
     require("lsp." .. server).setup(on_attach, capabilities)

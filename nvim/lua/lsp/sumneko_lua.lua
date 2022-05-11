@@ -1,22 +1,23 @@
 local settings = {
     Lua = {
-        diagnostics = {
-            globals = {
-                "global",
-                "vim",
-                "use",
-                "describe",
-                "it",
-                "assert",
-                "before_each",
-                "after_each",
-            },
-        },
-        completion = {
-            showWord = "Disable",
-            callSnippet = "Disable",
-            keywordSnippet = "Disable",
-        },
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
     },
 }
 
