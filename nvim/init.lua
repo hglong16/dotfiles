@@ -43,19 +43,6 @@ require("packer").startup(function()
 			"kyazdani42/nvim-web-devicons", -- optional, for file icon
 		},
 	})
-	use({
-		"chipsenkbeil/distant.nvim",
-		config = function()
-			require("distant").setup({
-				-- Applies Chip's personal settings to every machine you connect to
-				--
-				-- 1. Ensures that distant servers terminate with no connections
-				-- 2. Provides navigation bindings for remote directories
-				-- 3. Provides keybinding to jump into a remote file's parent directory
-				["*"] = require("distant.settings").chip_default(),
-			})
-		end,
-	})
 	-- UI to select things (files, grep results, open buffers...)
 	use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
@@ -80,7 +67,6 @@ require("packer").startup(function()
 	-- Additional textobjects for treesitter
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use({ "windwp/nvim-ts-autotag", ft = { "typescript", "typescriptreact" } })
-
 	-- nvim lsp
 	use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
 	use("williamboman/nvim-lsp-installer")
