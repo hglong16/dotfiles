@@ -29,7 +29,6 @@ require("packer").startup(function()
   use({ "max397574/better-escape.nvim" })
   use("stevearc/dressing.nvim")
   use("lewis6991/spellsitter.nvim")
-  use("Pocco81/TrueZen.nvim")
   use("karb94/neoscroll.nvim")
   -- indent for python
   use("Vimjas/vim-python-pep8-indent")
@@ -108,9 +107,33 @@ require("packer").startup(function()
     'ldelossa/gh.nvim',
     requires = { { 'ldelossa/litee.nvim' } }
   }
+  -- Lua
   use {
-    'https://codeberg.org/esensar/nvim-dev-container',
-    requires = { 'nvim-treesitter/nvim-treesitter' }
+    'abecodes/tabout.nvim',
+    config = function()
+      require('tabout').setup {
+        tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+        backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+        act_as_tab = true, -- shift content if tab out is not possible
+        act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+        default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+        default_shift_tab = '<C-d>', -- reverse shift default action,
+        enable_backwards = true, -- well ...
+        completion = true, -- if the tabkey is used in a completion pum
+        tabouts = {
+          { open = "'", close = "'" },
+          { open = '"', close = '"' },
+          { open = '`', close = '`' },
+          { open = '(', close = ')' },
+          { open = '[', close = ']' },
+          { open = '{', close = '}' }
+        },
+        ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+        exclude = {} -- tabout will ignore these filetypes
+      }
+    end,
+    wants = { 'nvim-treesitter' }, -- or require if not used so far
+    after = { 'completion-nvim' } -- if a completion plugin is using tabs load it before
   }
   use {
     "NTBBloodbath/rest.nvim",
@@ -237,9 +260,9 @@ vim.g.maplocalleader = " "
 vim.api.nvim_set_keymap("n", "k", "v:count == 0 ? 'gkzz' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap("n", "j", "v:count == 0 ? 'gjzz' : 'j'", { noremap = true, expr = true, silent = true })
 
-vim.keymap.set('n', '*', '*N',{silent=true})
-vim.keymap.set('n', 'n', 'nzz',{silent=true})
-vim.keymap.set('n', 'N', 'Nzz',{silent=true})
+vim.keymap.set('n', '*', '*N', { silent = true })
+vim.keymap.set('n', 'n', 'nzz', { silent = true })
+vim.keymap.set('n', 'N', 'Nzz', { silent = true })
 
 -- Highlight on yank
 vim.cmd([[
@@ -462,76 +485,7 @@ require("better_escape").setup({
   mapping = { "jk" },
 })
 require("spellsitter").setup()
-local true_zen = require("true-zen")
 
-true_zen.setup({
-  ui = {
-    bottom = {
-      laststatus = 3,
-      ruler = true,
-      showmode = true,
-      showcmd = true,
-      cmdheight = 3,
-    },
-    top = {
-      showtabline = 0,
-    },
-    left = {
-      number = true,
-      relativenumber = true,
-      signcolumn = "yes",
-    },
-  },
-  modes = {
-    ataraxis = {
-      left_padding = 32,
-      right_padding = 32,
-      top_padding = 0,
-      bottom_padding = 0,
-      ideal_writing_area_width = { 0 },
-      auto_padding = true,
-      keep_default_fold_fillchars = true,
-      custom_bg = { "none", "" },
-      bg_configuration = true,
-      quit = "untoggle",
-      ignore_floating_windows = true,
-      affected_higroups = {
-        NonText = true,
-        FoldColumn = true,
-        ColorColumn = true,
-        VertSplit = true,
-        StatusLine = true,
-        StatusLineNC = true,
-        SignColumn = true,
-      },
-    },
-    focus = {
-      margin_of_error = 5,
-      focus_method = "experimental",
-    },
-  },
-  integrations = {
-    vim_gitgutter = false,
-    galaxyline = false,
-    tmux = false,
-    gitsigns = false,
-    nvim_bufferline = false,
-    limelight = false,
-    twilight = false,
-    vim_airline = false,
-    vim_powerline = false,
-    vim_signify = false,
-    express_line = false,
-    lualine = true,
-    lightline = false,
-    feline = false,
-  },
-  misc = {
-    on_off_commands = false,
-    ui_elements_commands = false,
-    cursor_by_mode = false,
-  },
-})
 require("neoscroll").setup()
 
 vim.api.nvim_set_keymap("n", "<C-h>", [[<cmd>KittyNavigateLeft<cr>]], { noremap = true, silent = true })
@@ -555,5 +509,3 @@ require('litee.gh').setup({
   -- to GitHub integration.
 })
 
--- nvim-dev-container config
-require("devcontainer").setup {}
