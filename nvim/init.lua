@@ -10,7 +10,7 @@ vim.cmd([[
   augroup Packer
     autocmd!
     autocmd BufWritePost init.lua PackerCompile
-  augroup end
+  augroup  end
 ]])
 local config = function(name)
   return string.format("require('%s')", name)
@@ -68,7 +68,13 @@ require("packer").startup(function()
   use({ "windwp/nvim-ts-autotag", ft = { "typescript", "typescriptreact" } })
   -- nvim lsp
   use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
-  use("williamboman/nvim-lsp-installer")
+  use({
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").register_lsp_virtual_lines()
+    end,
+  })
+  use {"williamboman/mason.nvim"}
   use("folke/lua-dev.nvim") -- better sumneko_lua settings
   use("b0o/schemastore.nvim")
   use("jose-elias-alvarez/nvim-lsp-ts-utils")
@@ -108,33 +114,6 @@ require("packer").startup(function()
     requires = { { 'ldelossa/litee.nvim' } }
   }
   -- Lua
-  use {
-    'abecodes/tabout.nvim',
-    config = function()
-      require('tabout').setup {
-        tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
-        backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
-        act_as_tab = true, -- shift content if tab out is not possible
-        act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-        default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
-        default_shift_tab = '<C-d>', -- reverse shift default action,
-        enable_backwards = true, -- well ...
-        completion = true, -- if the tabkey is used in a completion pum
-        tabouts = {
-          { open = "'", close = "'" },
-          { open = '"', close = '"' },
-          { open = '`', close = '`' },
-          { open = '(', close = ')' },
-          { open = '[', close = ']' },
-          { open = '{', close = '}' }
-        },
-        ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
-        exclude = {} -- tabout will ignore these filetypes
-      }
-    end,
-    wants = { 'nvim-treesitter' }, -- or require if not used so far
-    after = { 'completion-nvim' } -- if a completion plugin is using tabs load it before
-  }
   use {
     "NTBBloodbath/rest.nvim",
     requires = { "nvim-lua/plenary.nvim" },
@@ -196,6 +175,7 @@ vim.opt.listchars = {
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.spell = true
+vim.o.wrap = true
 
 --Decrease update time
 vim.o.updatetime = 250
@@ -509,3 +489,12 @@ require('litee.gh').setup({
   -- to GitHub integration.
 })
 
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
