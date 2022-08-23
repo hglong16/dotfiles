@@ -31,6 +31,7 @@ local sources = {
   with_root_file(b.diagnostics.selene, "selene.toml"),
   b.diagnostics.flake8,
   b.diagnostics.teal,
+  b.diagnostics.eslint,
   b.diagnostics.tsc,
   with_diagnostics_code(b.diagnostics.shellcheck),
   -- code actions
