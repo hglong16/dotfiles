@@ -139,6 +139,21 @@ return require('packer').startup({
       },
       config = "require('plugins.neotest')"
     }
+<<<<<<< HEAD
+=======
+    --Better Escape
+    use {
+      "max397574/better-escape.nvim",
+      config = function()
+        require("better_escape").setup({
+          mapping = { 'jk' }
+        })
+      end,
+    }
+
+    -- clear this commit
+
+>>>>>>> 84308cd5e9f1478722c5f7e18623e15209d10176
 
     -- DAP
     use { 'theHamsta/nvim-dap-virtual-text' }
