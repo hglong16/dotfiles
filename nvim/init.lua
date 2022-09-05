@@ -1,6 +1,4 @@
--- Install packer
-require("impatient")
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+pcall(require, 'impatient')
 
 require('internal.packer_commands')
 require('utils.globals')

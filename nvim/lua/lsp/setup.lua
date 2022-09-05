@@ -107,19 +107,6 @@ lspconfig.sumneko_lua.setup {
   settings = require('lsp.servers.sumneko_lua').settings,
 }
 
-lspconfig.emmet_ls.setup {
-  capabilities = capabilities,
-  handlers = handlers,
-  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
-    init_options = {
-      html = {
-        options = {
-          -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-          ["bem.enabled"] = true,
-        },
-      },
-    }
-}
 lspconfig.vuels.setup {
   filetypes = require('lsp.servers.vuels').filetypes,
   handlers = handlers,

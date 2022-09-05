@@ -19,9 +19,6 @@ return require('packer').startup({
     use { 'nvim-lua/plenary.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'goolord/alpha-nvim', config = "require('plugins.alpha')" }
-    use { 'dsznajder/vscode-es7-javascript-react-snippets',
-      run = 'yarn install --frozen-lockfile && yarn compile'
-    }
 
     -- Themes
     use { 'folke/tokyonight.nvim' }
@@ -56,7 +53,6 @@ return require('packer').startup({
     use { 'williamboman/mason.nvim' }
     use { 'williamboman/mason-lspconfig.nvim' }
     use { 'neovim/nvim-lspconfig' }
-    use {'jose-elias-alvarez/null-ls.nvim'}
 
     -- LSP Cmp
     use { 'hrsh7th/nvim-cmp', event = 'InsertEnter', config = "require('plugins.cmp')" }
@@ -79,7 +75,6 @@ return require('packer').startup({
     use { 'ChristianChiarulli/nvim-gps', branch = 'text_hl', config = "require('plugins.gps')", after = 'nvim-treesitter' }
     use { 'jose-elias-alvarez/typescript.nvim' }
     use { 'axelvc/template-string.nvim', config = function() require('template-string').setup() end }
-    use { 'wellle/targets.vim' }
 
     -- General
     use { 'AndrewRadev/switch.vim' }
@@ -144,17 +139,8 @@ return require('packer').startup({
       },
       config = "require('plugins.neotest')"
     }
-    --Better Escape
-    use {
-      "max397574/better-escape.nvim",
-      config = function()
-        require("better_escape").setup({
-          mapping = { 'jk' }
-        })
-      end,
-    }
 
-
+    -- DAP
     use { 'theHamsta/nvim-dap-virtual-text' }
     use { 'rcarriga/nvim-dap-ui' }
     use { 'mfussenegger/nvim-dap', config = "require('plugins.dap')" }
