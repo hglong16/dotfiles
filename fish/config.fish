@@ -5,7 +5,6 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-source /usr/local/opt/asdf/libexec/asdf.fish
 set -gx TERM xterm-256color
 
 # theme
@@ -27,7 +26,6 @@ set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 set -gx PATH ~/.cargon/bin $PATH
-set -gx PATH /Users/hglong/Library/Python/3.8/bin $PATH
 
 # NodeJS
 set -gx PATH node_modules/.bin $PATH
@@ -52,7 +50,10 @@ function __check_rvm --on-variable PWD --description 'Do nvm stuff'
     end
 end
 
-set --universal nvm_default_version v17
+set --universal nvm_default_version 14
+
+
+
 
 function gitlog
     command git log --pretty=format:'%an %d %n %Cgreen%ci%Creset %s%Creset' --after="$argv 00:00" --branches --all >>~/Desktop/gitlog.txt

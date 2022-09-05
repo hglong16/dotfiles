@@ -81,6 +81,9 @@ require("packer").startup(function()
   use({ "RRethy/vim-illuminate", config = require("plugins/illuminate") })
   --   cmp
   use({ "hrsh7th/vim-vsnip", config = config("plugins.vsnip") })
+  use {'dsznajder/vscode-es7-javascript-react-snippets',
+run = 'yarn install --frozen-lockfile && yarn compile'
+}
   use({
     "hrsh7th/nvim-cmp", -- completion
     requires = {
