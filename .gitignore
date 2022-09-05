@@ -3,6 +3,8 @@ configstore
 gcloud
 gh
 tags
+fish/
+fist/fist_variables
 
 workshopper
 yarn/global
