@@ -3,7 +3,9 @@ configstore
 gcloud
 gh
 tags
-fish
+fish/
+fist/fist_variables
+
 workshopper
 yarn/global
 fish/
