@@ -67,6 +67,7 @@ if typescript_ok then
       capabilities = require('lsp.servers.tsserver').capabilities,
       handlers = require('lsp.servers.tsserver').handlers,
       on_attach = require('lsp.servers.tsserver').on_attach,
+      settings = require('lsp.servers.tsserver').settings,
     }
   })
 end
@@ -84,6 +85,7 @@ lspconfig.cssls.setup {
   capabilities = capabilities,
   handlers = handlers,
   on_attach = require('lsp.servers.cssls').on_attach,
+  settings = require('lsp.servers.cssls').settings,
 }
 
 lspconfig.eslint.setup {
@@ -114,8 +116,7 @@ lspconfig.vuels.setup {
   on_attach = on_attach,
 }
 
-
-for _, server in ipairs { "bashls", "graphql", "html", "volar", "prismals" } do
+for _, server in ipairs { "bashls", "emmet_ls", "graphql", "html", "volar", "prismals" } do
   lspconfig[server].setup {
     on_attach = on_attach,
     capabilities = capabilities,

@@ -75,6 +75,7 @@ return require('packer').startup({
     use { 'ChristianChiarulli/nvim-gps', branch = 'text_hl', config = "require('plugins.gps')", after = 'nvim-treesitter' }
     use { 'jose-elias-alvarez/typescript.nvim' }
     use { 'axelvc/template-string.nvim', config = function() require('template-string').setup() end }
+    use { 'lvimuser/lsp-inlayhints.nvim', config = function() require('lsp-inlayhints').setup() end }
 
     -- General
     use { 'AndrewRadev/switch.vim' }
@@ -86,17 +87,16 @@ return require('packer').startup({
     use { 'tpope/vim-speeddating' }
     use { 'dhruvasagar/vim-table-mode' }
     use { 'mg979/vim-visual-multi', config = function() vim.g.VM_leader = ";" end }
-    use { 'junegunn/vim-easy-align' }
     use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }
     use { 'nacro90/numb.nvim', config = "require('plugins.numb')" }
-    use { 'B4mbus/todo-comments.nvim', config = "require('plugins.todo-comments')" }
+    use { 'folke/todo-comments.nvim', config = "require('plugins.todo-comments')" }
     use { 'folke/zen-mode.nvim', config = "require('plugins.zen')", disable = not EcoVim.plugins.zen.enabled }
     use { 'folke/twilight.nvim', config = function() require("twilight").setup {} end,
       disable = not EcoVim.plugins.zen.enabled }
     use { 'ggandor/lightspeed.nvim', config = "require('plugins.lightspeed')" }
     use { 'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter" }
     use { 'ecosse3/galaxyline.nvim', after = 'nvim-gps', config = "require('plugins.galaxyline')", event = "BufWinEnter" }
-    use { 'romgrk/barbar.nvim', branch = 'feat/wipeout-cmds', requires = { 'kyazdani42/nvim-web-devicons' },
+    use { 'romgrk/barbar.nvim', requires = { 'kyazdani42/nvim-web-devicons' },
       config = "require('plugins.barbar')" }
     use { 'antoinemadec/FixCursorHold.nvim' } -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
     use { 'rcarriga/nvim-notify' }
@@ -109,6 +109,7 @@ return require('packer').startup({
     use { 'kylechui/nvim-surround', config = function() require("nvim-surround").setup({}) end }
     use { 'sunjon/shade.nvim', config = function() require("shade").setup(); require("shade").toggle(); end }
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async', config = "require('plugins.nvim-ufo')" }
+    use { 'echasnovski/mini.nvim', config = function() require("mini.align").setup() end }
 
     -- Snippets & Language & Syntax
     use { 'windwp/nvim-autopairs', after = { 'nvim-treesitter', 'nvim-cmp' }, config = "require('plugins.autopairs')" }
@@ -123,8 +124,8 @@ return require('packer').startup({
       config = "require('plugins.git.signs')",
       event = "BufRead"
     }
-    -- use { 'sindrets/diffview.nvim', config = "require('plugins.git.diffview')" }
-    use { 'akinsho/git-conflict.nvim', config = "require('plugins.git.conflict')" }
+    use { 'sindrets/diffview.nvim', config = "require('plugins.git.diffview')" }
+    use { 'akinsho/git-conflict.nvim', tag = "*", config = "require('plugins.git.conflict')" }
     use { 'ThePrimeagen/git-worktree.nvim', config = "require('plugins.git.worktree')" }
     use { 'kdheepak/lazygit.nvim' }
 
@@ -139,29 +140,50 @@ return require('packer').startup({
       },
       config = "require('plugins.neotest')"
     }
-<<<<<<< HEAD
-=======
-    --Better Escape
-    use {
-      "max397574/better-escape.nvim",
-      config = function()
-        require("better_escape").setup({
-          mapping = { 'jk' }
-        })
-      end,
-    }
-
-    -- clear this commit
-
->>>>>>> 84308cd5e9f1478722c5f7e18623e15209d10176
 
     -- DAP
     use { 'theHamsta/nvim-dap-virtual-text' }
     use { 'rcarriga/nvim-dap-ui' }
     use { 'mfussenegger/nvim-dap', config = "require('plugins.dap')" }
 
+    -- hglong adds
+    -- lua with packer.nvim
+    use {
+      "max397574/better-escape.nvim",
+      config = function()
+        require("better_escape").setup {
+          mapping = { "jk", "jj" }, -- a table with mappings to use
+          timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
+          clear_empty_lines = false, -- clear line after escaping if there is only whitespace
+          keys = "<Esc>", -- keys used for escaping, if it i
+        }
+      end,
+    }
+    use { 'gen740/SmoothCursor.nvim',
+      config = function()
+        require('smoothcursor').setup({
+          fancy= {
+            enable= true
+          }
+        })
+      end
+    }
+
+    use { 'sbdchd/neoformat' }
+    use { 'wellle/targets.vim' }
+    use { 'dsznajder/vscode-es7-javascript-react-snippets',
+      run = 'yarn install --frozen-lockfile && yarn compile'
+    }
+
+
     if packer_bootstrap then
-      require('packer').sync()
+      require('packer').sync(
+        {
+          fancy = {
+            enable = true,
+          }
+        }
+      )
     end
   end,
   config = {

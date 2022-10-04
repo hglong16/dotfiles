@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/ecosse3/nvim/compare/v2.3.0...v2.4.0) (2022-09-29)
+
+
+### Features
+
+* **autocmds:** decrease yank highlight timeout from 200ms to 100ms ([af3a6fb](https://github.com/ecosse3/nvim/commit/af3a6fbf85dc8825de4a123ce73b35748a641453))
+* **keybindings:** add [t and ]t mappings for jumping to next/prev todo ([689d83c](https://github.com/ecosse3/nvim/commit/689d83c6c8e3ffb4fa7d5bc000e744f4bf29114f))
+* **keymappings:** add gl keymapping to open line diagnostic ([ebb61bb](https://github.com/ecosse3/nvim/commit/ebb61bb21dd21b2d1beaee5fdeb5ee9a57618e2a))
+* **lsp:** add emmet ls with deprioritized autocomplete sorting (always at the bottom) ([9dccb4b](https://github.com/ecosse3/nvim/commit/9dccb4b48a8789a6019f6c0533542b61bdfa77b7)), closes [#96](https://github.com/ecosse3/nvim/issues/96)
+* **lsp:** more consistent ReactDTS filtering ([#97](https://github.com/ecosse3/nvim/issues/97)) ([b3652ba](https://github.com/ecosse3/nvim/commit/b3652ba52d1a444d3a8481ee8ff2b9cd90e1801f))
+* **plugins:** switch vim-easy-align to mini.nvim ([484a84f](https://github.com/ecosse3/nvim/commit/484a84f7add76a572cac72c565c6abc05a8023e7))
+
+
+### Bug Fixes
+
+* **plugins:** revert todo-comments to folke ([#98](https://github.com/ecosse3/nvim/issues/98)) ([fbd0dcf](https://github.com/ecosse3/nvim/commit/fbd0dcfaaa6baf16cab9d3d412c2dcfed64d9635))
+* **plugins:** use lua setup for barbar.nvim bufferline ([4d48147](https://github.com/ecosse3/nvim/commit/4d4814716862d5514c52b42fb466b48e1e18061b))
+
+## [2.3.0](https://github.com/ecosse3/nvim/compare/v2.2.2...v2.3.0) (2022-09-12)
+
+
+### Features
+
+* **keymappings:** add git conflict keymappings ([2908199](https://github.com/ecosse3/nvim/commit/2908199e36b34f24d5772419f2d120631bc54d20))
+* **lsp:** support classnames & clsx in tailwindcss LSP ([4aa4e81](https://github.com/ecosse3/nvim/commit/4aa4e818a599136a5f0358bc2ff18a468daa744a))
+* **lsp:** support inlay hints ([d8ac1d8](https://github.com/ecosse3/nvim/commit/d8ac1d8e10d5b69e51237a06e15a345f2b236088))
+* **plugins:** support back diffview.nvim ([eb23a34](https://github.com/ecosse3/nvim/commit/eb23a3406de476b52b67a7109ddf9b9fc4368aff))
+
+
+### Bug Fixes
+
+* **colorscheme:** provide MsgArea fg color ([a4f3698](https://github.com/ecosse3/nvim/commit/a4f3698b1717b2f49b7837bc3d434dc5d6aaa2d2))
+* **lsp:** ignore rules linting for Tailwind in CSS/SCSS files ([2373084](https://github.com/ecosse3/nvim/commit/2373084146b697854920b40790264668d3db7266))
+* **plugins:** add default jestCommand for neotest-jest to fix running tests ([9679774](https://github.com/ecosse3/nvim/commit/96797741338e78bbf8bca67ce6543176df43016b))
+* **plugins:** fix colorizer.nvim config ([2fba6ea](https://github.com/ecosse3/nvim/commit/2fba6eaf8717d6135c71f410cee3cc8ed6c4cbac))
+* **plugins:** update barbar to default branch cause wipeout-cmds was deleted ([9bbaac2](https://github.com/ecosse3/nvim/commit/9bbaac262ac8e4618dc8192a3bc07d431ed6c3c1))
+* **plugins:** use recommended tag for git-conflict plugin ([16a101e](https://github.com/ecosse3/nvim/commit/16a101e934c1da7e84c357e39fe11a315fca0df9))
+
+### [2.2.2](https://github.com/ecosse3/nvim/compare/v2.2.1...v2.2.2) (2022-09-07)
+
+
+### Bug Fixes
+
+* **colorscheme:** remove foreground from Nvim Tree Folder Icon after its update ([4655783](https://github.com/ecosse3/nvim/commit/4655783cc029996228d012620c3d0cf79c1630b7))
+* **colorscheme:** update tokyonight.nvim theme api ([72ee898](https://github.com/ecosse3/nvim/commit/72ee89800594b9a71305e044d446affc4c5e74a4))
+
 ### [2.2.1](https://github.com/ecosse3/nvim/compare/v2.2.0...v2.2.1) (2022-08-28)
 
 
